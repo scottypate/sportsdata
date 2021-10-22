@@ -1,0 +1,2731 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "NFL v3 Advanced Metrics",
+    "version": "1.0"
+  },
+  "host": "api.sportsdata.io",
+  "basePath": "/v3/nfl/advanced-metrics",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "securityDefinitions": {
+    "apiKeyHeader": {
+      "type": "apiKey",
+      "name": "Ocp-Apim-Subscription-Key",
+      "in": "header"
+    },
+    "apiKeyQuery": {
+      "type": "apiKey",
+      "name": "key",
+      "in": "query"
+    }
+  },
+  "security": [
+    {
+      "apiKeyHeader": []
+    },
+    {
+      "apiKeyQuery": []
+    }
+  ],
+  "x-servers": [
+    {
+      "url": "http://api.sportsdata.io"
+    },
+    {
+      "url": "https://api.sportsdata.io"
+    },
+    {
+      "url": "http://azure-api.sportsdata.io"
+    },
+    {
+      "url": "https://azure-api.sportsdata.io"
+    }
+  ],
+  "paths": {
+    "/{format}/AdvancedPlayers": {
+      "get": {
+        "operationId": "AdvancedPlayers",
+        "summary": "Advanced Players",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "default": "XML",
+            "enum": [
+              "XML",
+              "JSON"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": null,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PlayerInfo"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/AdvancedPlayerGameStats/{season}/{week}": {
+      "get": {
+        "operationId": "AdvancedPlayerGameStats",
+        "summary": "Advanced Player Game Stats",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "default": "XML",
+            "enum": [
+              "XML",
+              "JSON"
+            ]
+          },
+          {
+            "name": "season",
+            "in": "path",
+            "description": "Year of the season and the season type. If no season type is provided, then the default is regular season. <br>Examples: <code>2018REG</code>, <code>2018PRE</code>, <code>2018POST</code>.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "week",
+            "in": "path",
+            "description": "Week of the season. Valid values are as follows: Preseason 0 to 4, Regular Season 1 to 17, Postseason 1 to 4. Example: <code>1</code>",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": null,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AdvancedPlayerGame"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/AdvancedPlayerGameStatsByPlayerID/{season}/{playerid}": {
+      "get": {
+        "operationId": "AdvancedPlayerGameStatsByPlayer",
+        "summary": "Advanced Player Game Stats by Player",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "default": "XML",
+            "enum": [
+              "XML",
+              "JSON"
+            ]
+          },
+          {
+            "name": "season",
+            "in": "path",
+            "description": "Year of the season and the season type. If no season type is provided, then the default is regular season. <br>Examples: <code>2018REG</code>, <code>2018PRE</code>, <code>2018POST</code>.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "playerid",
+            "in": "path",
+            "description": "Each NFL player has a unique ID assigned by FantasyData. Player IDs can be determined by pulling player related data. Example:<code>732</code>.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": null,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AdvancedPlayerGame"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/AdvancedPlayerInfo/{playerid}": {
+      "get": {
+        "operationId": "AdvancedPlayerInfo",
+        "summary": "Advanced Player Info",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "default": "XML",
+            "enum": [
+              "XML",
+              "JSON"
+            ]
+          },
+          {
+            "name": "playerid",
+            "in": "path",
+            "description": "Each NFL player has a unique ID assigned by FantasyData. Player IDs can be determined by pulling player related data. Example:<code>732</code>.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": null,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AdvancedPlayer"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/AdvancedPlayerSeasonStatsByPlayerID/{season}/{playerid}": {
+      "get": {
+        "operationId": "AdvancedPlayerSeasonStatsByPlayer",
+        "summary": "Advanced Player Season Stats by Player",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "default": "XML",
+            "enum": [
+              "XML",
+              "JSON"
+            ]
+          },
+          {
+            "name": "season",
+            "in": "path",
+            "description": "Year of the season and the season type. If no season type is provided, then the default is regular season. <br>Examples: <code>2018REG</code>, <code>2018PRE</code>, <code>2018POST</code>.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "playerid",
+            "in": "path",
+            "description": "Each NFL player has a unique ID assigned by FantasyData. Player IDs can be determined by pulling player related data. Example:<code>732</code>.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": null,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AdvancedPlayerSeason"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/AdvancedPlayerSeasonStats/{season}/{team}": {
+      "get": {
+        "operationId": "AdvancedPlayerSeasonStatsByTeam",
+        "summary": "Advanced Player Season Stats by Team",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "default": "XML",
+            "enum": [
+              "XML",
+              "JSON"
+            ]
+          },
+          {
+            "name": "season",
+            "in": "path",
+            "description": "Year of the season and the season type. If no season type is provided, then the default is regular season. <br>Examples: <code>2018REG</code>, <code>2018PRE</code>, <code>2018POST</code>.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "team",
+            "in": "path",
+            "description": "Abbreviation of the team. Example: <code>WAS</code>.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": null,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AdvancedPlayerSeason"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    }
+  },
+  "tags": [],
+  "definitions": {
+    "PlayerInfo": {
+      "properties": {
+        "PlayerID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Name": {
+          "type": "string",
+          "nullable": true
+        },
+        "TeamID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Team": {
+          "type": "string",
+          "nullable": true
+        },
+        "Position": {
+          "type": "string",
+          "nullable": true
+        }
+      }
+    },
+    "AdvancedPlayerGame": {
+      "properties": {
+        "PlayerID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Name": {
+          "type": "string",
+          "nullable": true
+        },
+        "TeamID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Team": {
+          "type": "string",
+          "nullable": true
+        },
+        "Position": {
+          "type": "string",
+          "nullable": true
+        },
+        "FantasyPosition": {
+          "type": "string",
+          "nullable": true
+        },
+        "PositionGroup": {
+          "type": "string",
+          "nullable": true
+        },
+        "Season": {
+          "type": "integer",
+          "nullable": false
+        },
+        "SeasonType": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Week": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Opponent": {
+          "type": "string",
+          "nullable": true
+        },
+        "OpponentID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Snaps": {
+          "type": "number",
+          "nullable": true
+        },
+        "SnapShare": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassingAttempts": {
+          "type": "number",
+          "nullable": true
+        },
+        "Completions": {
+          "type": "number",
+          "nullable": true
+        },
+        "CompletionPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassingYards": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassingYardsPerAttempt": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassingTouchdowns": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassingTDs": {
+          "type": "number",
+          "nullable": true
+        },
+        "Interceptions": {
+          "type": "number",
+          "nullable": true
+        },
+        "RedZoneAttempts": {
+          "type": "number",
+          "nullable": true
+        },
+        "RedZoneCompletionPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "DeepBallAttempts": {
+          "type": "number",
+          "nullable": true
+        },
+        "DeepBallCompletions": {
+          "type": "number",
+          "nullable": true
+        },
+        "Carries": {
+          "type": "number",
+          "nullable": true
+        },
+        "RushingYards": {
+          "type": "number",
+          "nullable": true
+        },
+        "RushingTouchdowns": {
+          "type": "number",
+          "nullable": true
+        },
+        "Targets": {
+          "type": "number",
+          "nullable": true
+        },
+        "Receptions": {
+          "type": "number",
+          "nullable": true
+        },
+        "ReceivingYards": {
+          "type": "number",
+          "nullable": true
+        },
+        "ReceivingTouchdowns": {
+          "type": "number",
+          "nullable": true
+        },
+        "TotalYards": {
+          "type": "number",
+          "nullable": true
+        },
+        "TotalTouches": {
+          "type": "number",
+          "nullable": true
+        },
+        "YardsPerTouch": {
+          "type": "number",
+          "nullable": true
+        },
+        "Opportunities": {
+          "type": "number",
+          "nullable": true
+        },
+        "OpportunityShare": {
+          "type": "number",
+          "nullable": true
+        },
+        "TotalTouchdowns": {
+          "type": "number",
+          "nullable": true
+        },
+        "EvadedTackles": {
+          "type": "number",
+          "nullable": true
+        },
+        "JukeRate": {
+          "type": "number",
+          "nullable": true
+        },
+        "CatchRate": {
+          "type": "number",
+          "nullable": true
+        },
+        "TargetShare": {
+          "type": "number",
+          "nullable": true
+        },
+        "HogRate": {
+          "type": "number",
+          "nullable": true
+        },
+        "ContestedTargets": {
+          "type": "number",
+          "nullable": true
+        },
+        "ContestedCatches": {
+          "type": "number",
+          "nullable": true
+        },
+        "RedZoneCarries": {
+          "type": "number",
+          "nullable": true
+        },
+        "RedZoneTargets": {
+          "type": "number",
+          "nullable": true
+        },
+        "RedZoneOpportunities": {
+          "type": "number",
+          "nullable": true
+        },
+        "RedZoneTouches": {
+          "type": "number",
+          "nullable": true
+        },
+        "RedZoneReceptions": {
+          "type": "number",
+          "nullable": true
+        },
+        "RedZoneCatchRate": {
+          "type": "number",
+          "nullable": true
+        },
+        "YardsPerCarry": {
+          "type": "number",
+          "nullable": true
+        },
+        "YardsPerTarget": {
+          "type": "number",
+          "nullable": true
+        },
+        "YardsPerOpportunity": {
+          "type": "number",
+          "nullable": true
+        },
+        "YardsPerReception": {
+          "type": "number",
+          "nullable": true
+        },
+        "EndZoneTargets": {
+          "type": "number",
+          "nullable": true
+        },
+        "RoutesRun": {
+          "type": "number",
+          "nullable": true
+        },
+        "Burns": {
+          "type": "number",
+          "nullable": true
+        },
+        "Hurries": {
+          "type": "number",
+          "nullable": true
+        },
+        "YardsCreated": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassAttemptsInside5": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassAttemptsInside10": {
+          "type": "number",
+          "nullable": true
+        },
+        "CarriesInside5": {
+          "type": "number",
+          "nullable": true
+        },
+        "CarriesInside10": {
+          "type": "number",
+          "nullable": true
+        },
+        "TargetsInside5": {
+          "type": "number",
+          "nullable": true
+        },
+        "TargetsInside10": {
+          "type": "number",
+          "nullable": true
+        },
+        "PrimaryCorner": {
+          "type": "number",
+          "nullable": true
+        },
+        "RoutesDefended": {
+          "type": "number",
+          "nullable": true
+        },
+        "TargetsAllowed": {
+          "type": "number",
+          "nullable": true
+        },
+        "ReceptionsAllowed": {
+          "type": "number",
+          "nullable": true
+        },
+        "YardsAllowed": {
+          "type": "number",
+          "nullable": true
+        },
+        "BurnsCB": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassBreakups": {
+          "type": "number",
+          "nullable": true
+        },
+        "InterceptionsCB": {
+          "type": "number",
+          "nullable": true
+        },
+        "WRMatchup": {
+          "type": "number",
+          "nullable": true
+        },
+        "FantasyPoints": {
+          "type": "number",
+          "nullable": true
+        },
+        "FantasyPointsRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "FantasyPointsPerAttempt": {
+          "type": "number",
+          "nullable": true
+        },
+        "FantasyPointsPerTarget": {
+          "type": "number",
+          "nullable": true
+        },
+        "FantasyPointsPerOpportunity": {
+          "type": "number",
+          "nullable": true
+        },
+        "FantasyPointsAllowed": {
+          "type": "number",
+          "nullable": true
+        },
+        "FantasyPointsAllowedWeekRank": {
+          "type": "integer",
+          "nullable": true
+        }
+      }
+    },
+    "AdvancedPlayer": {
+      "properties": {
+        "PlayerID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Name": {
+          "type": "string",
+          "nullable": true
+        },
+        "TeamID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Team": {
+          "type": "string",
+          "nullable": true
+        },
+        "Position": {
+          "type": "string",
+          "nullable": true
+        },
+        "FantasyPosition": {
+          "type": "string",
+          "nullable": true
+        },
+        "PositionGroup": {
+          "type": "string",
+          "nullable": true
+        },
+        "BMI": {
+          "type": "number",
+          "nullable": true
+        },
+        "BMIRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "HandSize": {
+          "type": "number",
+          "nullable": true
+        },
+        "HandSizeRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ArmLength": {
+          "type": "number",
+          "nullable": true
+        },
+        "ArmLengthRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "QualityScore": {
+          "type": "number",
+          "nullable": true
+        },
+        "QualityScoreRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "FortyYardDash": {
+          "type": "number",
+          "nullable": true
+        },
+        "FortyYardDashRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ThreeConeDrill": {
+          "type": "number",
+          "nullable": true
+        },
+        "ThreeConeDrillRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TwentyYardShuttle": {
+          "type": "number",
+          "nullable": true
+        },
+        "TwentyYardShuttleRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "AgilityScore": {
+          "type": "number",
+          "nullable": true
+        },
+        "AgilityScoreRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "VerticalJump": {
+          "type": "number",
+          "nullable": true
+        },
+        "VerticalJumpRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "BroadJump": {
+          "type": "number",
+          "nullable": true
+        },
+        "BroadJumpRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "BurstScore": {
+          "type": "number",
+          "nullable": true
+        },
+        "BurstScoreRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "SPARQx": {
+          "type": "number",
+          "nullable": true
+        },
+        "SPARQxRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "AthleticismScore": {
+          "type": "number",
+          "nullable": true
+        },
+        "AthleticismScoreRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "SpeedScore": {
+          "type": "number",
+          "nullable": true
+        },
+        "SpeedScoreRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ThrowVelocity": {
+          "type": "number",
+          "nullable": true
+        },
+        "ThrowVelocityRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "WonderlicScore": {
+          "type": "number",
+          "nullable": true
+        },
+        "WonderlicScoreRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "HeightAdjustedSpeedScore": {
+          "type": "number",
+          "nullable": true
+        },
+        "HeightAdjustedSpeedScoreRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "CatchRadius": {
+          "type": "number",
+          "nullable": true
+        },
+        "CatchRadiusRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "BenchPress": {
+          "type": "number",
+          "nullable": true
+        },
+        "BenchPressRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PlaymakingRadius": {
+          "type": "number",
+          "nullable": true
+        },
+        "PlaymakingRadiusRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "HighlightClip": {
+          "type": "string",
+          "nullable": true
+        },
+        "MedicalHistory": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AdvancedPlayerMedical"
+          }
+        },
+        "ComparablePlayers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PlayerInfo"
+          }
+        },
+        "AdvancedPlayerSeasons": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AdvancedPlayerSeason"
+          }
+        },
+        "AdvancedPlayerGames": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AdvancedPlayerGame"
+          }
+        }
+      }
+    },
+    "AdvancedPlayerMedical": {
+      "properties": {
+        "AdvancedPlayerMedicalID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "TeamID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Team": {
+          "type": "string",
+          "nullable": true
+        },
+        "Season": {
+          "type": "integer",
+          "nullable": false
+        },
+        "IncidentDate": {
+          "type": "string",
+          "nullable": true
+        },
+        "InjuryDescription": {
+          "type": "string",
+          "nullable": true
+        },
+        "Severity": {
+          "type": "string",
+          "nullable": true
+        },
+        "GamesMissed": {
+          "type": "integer",
+          "nullable": true
+        },
+        "GamesOnInjuryReport": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Surgery": {
+          "type": "string",
+          "nullable": true
+        },
+        "RecoveryTimetable": {
+          "type": "string",
+          "nullable": true
+        }
+      }
+    },
+    "AdvancedPlayerSeason": {
+      "properties": {
+        "PlayerID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Name": {
+          "type": "string",
+          "nullable": true
+        },
+        "TeamID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Team": {
+          "type": "string",
+          "nullable": true
+        },
+        "Position": {
+          "type": "string",
+          "nullable": true
+        },
+        "FantasyPosition": {
+          "type": "string",
+          "nullable": true
+        },
+        "PositionGroup": {
+          "type": "string",
+          "nullable": true
+        },
+        "Season": {
+          "type": "integer",
+          "nullable": false
+        },
+        "SeasonType": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Games": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Snaps": {
+          "type": "number",
+          "nullable": true
+        },
+        "SnapShare": {
+          "type": "number",
+          "nullable": true
+        },
+        "SnapShareRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "SlotRate": {
+          "type": "number",
+          "nullable": true
+        },
+        "SlotRateRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TargetSeparation": {
+          "type": "number",
+          "nullable": true
+        },
+        "TargetSeparationRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "BurnRate": {
+          "type": "number",
+          "nullable": true
+        },
+        "AirYards": {
+          "type": "number",
+          "nullable": true
+        },
+        "AirYardsPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "AirYardsRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Carries": {
+          "type": "number",
+          "nullable": true
+        },
+        "CarriesInside10": {
+          "type": "number",
+          "nullable": true
+        },
+        "CarriesInside10PerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "CarriesInside5": {
+          "type": "number",
+          "nullable": true
+        },
+        "CarriesInside5PerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "CarriesPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "CarriesPerGameRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "CarriesRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "GameScript": {
+          "type": "number",
+          "nullable": true
+        },
+        "GameScriptRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "GoalLineCarries": {
+          "type": "number",
+          "nullable": true
+        },
+        "GoalLineCarriesPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "GoalLineCarriesPerGameRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "GoalLineCarriesRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ProductionPremium": {
+          "type": "number",
+          "nullable": true
+        },
+        "ProductionPremiumRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "RedZoneCarries": {
+          "type": "number",
+          "nullable": true
+        },
+        "RedZoneCarriesPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "RedZoneCarriesPerGameRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "RedZoneCarriesRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "RushingTouchdowns": {
+          "type": "number",
+          "nullable": true
+        },
+        "RushingTouchdownsRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "RushingYards": {
+          "type": "number",
+          "nullable": true
+        },
+        "RushingYardsRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "RushYardsPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "RedZoneSnaps": {
+          "type": "number",
+          "nullable": true
+        },
+        "RunSnaps": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassSnaps": {
+          "type": "number",
+          "nullable": true
+        },
+        "SnapweightedGameScript": {
+          "type": "number",
+          "nullable": true
+        },
+        "SnapweightedGameScriptRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TeamPassPlays": {
+          "type": "number",
+          "nullable": true
+        },
+        "TeamPassPlaysRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TouchdownRate": {
+          "type": "number",
+          "nullable": true
+        },
+        "WeeklyVolatility": {
+          "type": "number",
+          "nullable": true
+        },
+        "WeeklyVolatilityRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "VOS": {
+          "type": "number",
+          "nullable": true
+        },
+        "VOSRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "YardsPerTarget": {
+          "type": "number",
+          "nullable": true
+        },
+        "YardsPerTargetRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "YardsPerReception": {
+          "type": "number",
+          "nullable": true
+        },
+        "YardsAfterCatch": {
+          "type": "number",
+          "nullable": true
+        },
+        "YardsAfterCatchPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "YardsAfterCatchPerReception": {
+          "type": "number",
+          "nullable": true
+        },
+        "YardsAfterCatchPerTarget": {
+          "type": "number",
+          "nullable": true
+        },
+        "YardsAfterCatchRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TotalTouchdowns": {
+          "type": "number",
+          "nullable": true
+        },
+        "TotalTouchdownsRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TotalTouches": {
+          "type": "number",
+          "nullable": true
+        },
+        "TotalYards": {
+          "type": "number",
+          "nullable": true
+        },
+        "TotalYardsPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "Targets": {
+          "type": "number",
+          "nullable": true
+        },
+        "TargetShare": {
+          "type": "number",
+          "nullable": true
+        },
+        "TargetShareRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TargetsInside10": {
+          "type": "number",
+          "nullable": true
+        },
+        "TargetsInside10PerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "TargetsInside5": {
+          "type": "number",
+          "nullable": true
+        },
+        "TargetsInside5PerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "TargetsPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "TargetsPerGameRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TargetsRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "SlotSnaps": {
+          "type": "number",
+          "nullable": true
+        },
+        "SlotYPR": {
+          "type": "number",
+          "nullable": true
+        },
+        "SlotYPRRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "SlotYPT": {
+          "type": "number",
+          "nullable": true
+        },
+        "SlotYPTRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "RedZoneSnapShare": {
+          "type": "number",
+          "nullable": true
+        },
+        "RedZoneSnapShareRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "RouteParticipation": {
+          "type": "number",
+          "nullable": true
+        },
+        "RouteParticipationRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PassRoutes": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassRoutesPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassRoutesPerGameRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "RedZoneReceptions": {
+          "type": "number",
+          "nullable": true
+        },
+        "RedZoneReceptionsRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "RedZoneTargets": {
+          "type": "number",
+          "nullable": true
+        },
+        "RedZoneTargetShare": {
+          "type": "number",
+          "nullable": true
+        },
+        "RedZoneTargetShareRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "RedZoneTargetsRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "RedZoneTouches": {
+          "type": "number",
+          "nullable": true
+        },
+        "RedZoneTouchesPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "QBRatingWhenTargeted": {
+          "type": "number",
+          "nullable": true
+        },
+        "QBRatingWhenTargetedRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ReceivingTDs": {
+          "type": "number",
+          "nullable": true
+        },
+        "ReceivingYards": {
+          "type": "number",
+          "nullable": true
+        },
+        "ReceivingYardsPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "ReceivingYardsPerGameRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ReceivingYardsRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Receptions": {
+          "type": "number",
+          "nullable": true
+        },
+        "ReceptionsPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "ReceptionsPerGameRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ReceptionsRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "RedZoneCatchRate": {
+          "type": "number",
+          "nullable": true
+        },
+        "RedZoneCatchRateRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "CatchableTargetRate": {
+          "type": "number",
+          "nullable": true
+        },
+        "CatchableTargetRateRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "CatchableTargets": {
+          "type": "number",
+          "nullable": true
+        },
+        "CatchRate": {
+          "type": "number",
+          "nullable": true
+        },
+        "CatchRateRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "DominatorRating": {
+          "type": "number",
+          "nullable": true
+        },
+        "DominatorRatingRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Drops": {
+          "type": "number",
+          "nullable": true
+        },
+        "DropsPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "DropsPerGameRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "DropRate": {
+          "type": "number",
+          "nullable": true
+        },
+        "DropRateRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "DropsRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "EndzoneTargets": {
+          "type": "number",
+          "nullable": true
+        },
+        "EndzoneTargetShare": {
+          "type": "number",
+          "nullable": true
+        },
+        "EndzoneTargetShareRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "AccuracyRating": {
+          "type": "number",
+          "nullable": true
+        },
+        "AccuracyRatingRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "AdjustedAttempts": {
+          "type": "number",
+          "nullable": true
+        },
+        "AdjustedYardsPerAttempt": {
+          "type": "number",
+          "nullable": true
+        },
+        "AdjustedYardsPerAttemptRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "AirYardsPerAttempt": {
+          "type": "number",
+          "nullable": true
+        },
+        "AirYardsPerAttemptRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "AttemptsInside10": {
+          "type": "number",
+          "nullable": true
+        },
+        "AttemptsInside10PerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "AttemptsInside5": {
+          "type": "number",
+          "nullable": true
+        },
+        "AttemptsInside5PerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "AttemptsPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "CatchablePasses": {
+          "type": "number",
+          "nullable": true
+        },
+        "CatchablePassesPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "CatchablePassesRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "CompletionPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "CompletionPercentageRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Completions": {
+          "type": "number",
+          "nullable": true
+        },
+        "DangerPlays": {
+          "type": "number",
+          "nullable": true
+        },
+        "DangerPlaysPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "DangerPlaysRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "DeepBallAttempts": {
+          "type": "number",
+          "nullable": true
+        },
+        "DeepBallAttemptsPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "DeepBallAttemptsPerGameRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "DeepBallAttemptsRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "DeepBallCompletionPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "DeepBallCompletionPercentageRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "DeepBallCompletions": {
+          "type": "number",
+          "nullable": true
+        },
+        "DeepBallCompletionsRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "DroppedPasses": {
+          "type": "number",
+          "nullable": true
+        },
+        "DroppedPassesRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "DroppedPassesPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "DropsPerAttempt": {
+          "type": "number",
+          "nullable": true
+        },
+        "DropsPerAttemptRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "DropBacks": {
+          "type": "number",
+          "nullable": true
+        },
+        "InterceptablePasses": {
+          "type": "number",
+          "nullable": true
+        },
+        "InterceptablePassesPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "InterceptablePassesRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "MoneyThrows": {
+          "type": "number",
+          "nullable": true
+        },
+        "MoneyThrowsPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "MoneyThrowsRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PassAttempts": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassAttemptsRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PassAttemptDistance": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassAttemptDistanceRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PassAttemptDistancePerAttempt": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassAttemptDistancePerAttemptRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PassingAttempts": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassingTouchdowns": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassingTouchdownsRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PassingYards": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassingYardsPerAttempt": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassingYardsPerAttemptRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PassingYardsPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassingYardsPerGameRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PassingYardsRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PlayactionPassAttempts": {
+          "type": "number",
+          "nullable": true
+        },
+        "PlayactionPassAttemptsPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "PlayactionPassAttemptsRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PlayactionPassCompletionPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "PlayactionPassCompletionPercentageRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ProtectionRate": {
+          "type": "number",
+          "nullable": true
+        },
+        "ProtectionRateRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "RedZoneAttempts": {
+          "type": "number",
+          "nullable": true
+        },
+        "RedZoneAttemptsPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "RedZoneAttemptsRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "RedZoneCompletionPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "RedZoneCompletionPercentageRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "RedZoneTDtoINTRatio": {
+          "type": "number",
+          "nullable": true
+        },
+        "RushingTDs": {
+          "type": "number",
+          "nullable": true
+        },
+        "RushingYardsPerGameRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ShotgunCompletionPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "ShotgunSnaps": {
+          "type": "number",
+          "nullable": true
+        },
+        "UnderCenterCompletionPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "UnderCenterSnaps": {
+          "type": "number",
+          "nullable": true
+        },
+        "ReceiverContestedCatchRate": {
+          "type": "number",
+          "nullable": true
+        },
+        "ReceiverContestedCatchRateRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ReceiverTargetSeparation": {
+          "type": "number",
+          "nullable": true
+        },
+        "ReceiverTargetSeparationRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ReceiverYardsAfterTheCatch": {
+          "type": "number",
+          "nullable": true
+        },
+        "ReceiverYardsAfterTheCatchRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ReceiverYardsAfterTheCatchPerTarget": {
+          "type": "number",
+          "nullable": true
+        },
+        "SupportingCastEfficiency": {
+          "type": "number",
+          "nullable": true
+        },
+        "SupportingCastEfficiencyRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TotalQBR": {
+          "type": "number",
+          "nullable": true
+        },
+        "TotalQBRRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TrueCompletionPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "TrueCompletionPercentageRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TruePasserRating": {
+          "type": "number",
+          "nullable": true
+        },
+        "TruePasserRatingRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "UncatchablePasses": {
+          "type": "number",
+          "nullable": true
+        },
+        "UncatchablePassesPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "UncatchablePassesRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "UnderPressureAttempts": {
+          "type": "number",
+          "nullable": true
+        },
+        "UnderPressureAttemptsRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "UnderPressureAttemptsPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "PressuredCompletionPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "PressuredCompletionPercentageRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "AverageDefendersInTheBox": {
+          "type": "number",
+          "nullable": true
+        },
+        "AverageDefendersInTheBoxRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "BaseFrontCarryRate": {
+          "type": "number",
+          "nullable": true
+        },
+        "BaseFrontCarryRateRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "BaseFrontYardsPerCarry": {
+          "type": "number",
+          "nullable": true
+        },
+        "BaseFrontYardsPerCarryRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "BreakawayRunRate": {
+          "type": "number",
+          "nullable": true
+        },
+        "BreakawayRunRateRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "BreakawayRuns": {
+          "type": "number",
+          "nullable": true
+        },
+        "BreakawayRunsPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "BreakawayRunsPerGameRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "BreakawayRunsRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "EvadedTackles": {
+          "type": "number",
+          "nullable": true
+        },
+        "EvadedTacklesPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "EvadedTacklesPerGameRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "EvadedTacklesRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "JukeRate": {
+          "type": "number",
+          "nullable": true
+        },
+        "JukeRateRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "LightFrontCarryRate": {
+          "type": "number",
+          "nullable": true
+        },
+        "LightFrontCarryRateRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "LightFrontYardsPerCarry": {
+          "type": "number",
+          "nullable": true
+        },
+        "LightFrontYardsPerCarryRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Opportunities": {
+          "type": "number",
+          "nullable": true
+        },
+        "OpportunityShare": {
+          "type": "number",
+          "nullable": true
+        },
+        "OpportunityShareRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "RedZoneOpportunities": {
+          "type": "number",
+          "nullable": true
+        },
+        "RedZoneTouchesPerGameRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "RedZoneTouchesRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "RunBlockingEfficiency": {
+          "type": "number",
+          "nullable": true
+        },
+        "RunBlockingEfficiencyRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "RushYardsPerGameRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ShotgunCarryRate": {
+          "type": "number",
+          "nullable": true
+        },
+        "ShotgunCarryRateRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ShotgunYardsPerCarry": {
+          "type": "number",
+          "nullable": true
+        },
+        "ShotgunYardsPerCarryRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "RedZoneOpportunityShare": {
+          "type": "number",
+          "nullable": true
+        },
+        "RedZoneOpportunityShareRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "RedZoneTDConversionRate": {
+          "type": "number",
+          "nullable": true
+        },
+        "RedZoneTDConversionRateRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "StackedFrontCarryRate": {
+          "type": "number",
+          "nullable": true
+        },
+        "StackedFrontCarryRateRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "StackedFrontYardsPerCarry": {
+          "type": "number",
+          "nullable": true
+        },
+        "StackedFrontYardsPerCarryRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "StuffedRuns": {
+          "type": "number",
+          "nullable": true
+        },
+        "StuffedRunsRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "StuffedRunRate": {
+          "type": "number",
+          "nullable": true
+        },
+        "StuffedRunRateRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TeamRunPlays": {
+          "type": "number",
+          "nullable": true
+        },
+        "TeamRunPlaysRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TotalYardsPerGameRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TotalYardsRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TrueYardsPerCarry": {
+          "type": "number",
+          "nullable": true
+        },
+        "TrueYardsPerCarryRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "UnderCenterCarryRate": {
+          "type": "number",
+          "nullable": true
+        },
+        "UnderCenterCarryRateRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "UnderCenterYardsPerCarry": {
+          "type": "number",
+          "nullable": true
+        },
+        "UnderCenterYardsPerCarryRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "WeightedOpportunities": {
+          "type": "number",
+          "nullable": true
+        },
+        "WeightedOpportunitiesRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "WeightedOpportunitiesPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "WeightedOpportunitiesPerGameRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "YardsCreated": {
+          "type": "number",
+          "nullable": true
+        },
+        "YardsCreatedPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "YardsCreatedPerGameRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "YardsCreatedPerCarry": {
+          "type": "number",
+          "nullable": true
+        },
+        "YardsCreatedPerCarryRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "YardsCreatedRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "YardsPerCarry": {
+          "type": "number",
+          "nullable": true
+        },
+        "YardsPerCarryRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "YardsPerOpportunity": {
+          "type": "number",
+          "nullable": true
+        },
+        "YardsPerRouteRun": {
+          "type": "number",
+          "nullable": true
+        },
+        "YardsPerRouteRunRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "YardsPerTouch": {
+          "type": "number",
+          "nullable": true
+        },
+        "YardsPerTouchRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "AirYardsPerReception": {
+          "type": "number",
+          "nullable": true
+        },
+        "AirYardsPerTarget": {
+          "type": "number",
+          "nullable": true
+        },
+        "Cushion": {
+          "type": "number",
+          "nullable": true
+        },
+        "CushionRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "AverageTargetDistance": {
+          "type": "number",
+          "nullable": true
+        },
+        "AverageTargetDistanceRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Burns": {
+          "type": "number",
+          "nullable": true
+        },
+        "CatchableTargetsPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "CatchableTargetsRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ContestedCatchConversionRate": {
+          "type": "number",
+          "nullable": true
+        },
+        "ContestedCatchConversionRateRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ContestedCatches": {
+          "type": "number",
+          "nullable": true
+        },
+        "ContestedTargets": {
+          "type": "number",
+          "nullable": true
+        },
+        "HogRate": {
+          "type": "number",
+          "nullable": true
+        },
+        "HogRateRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PassSnapsRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "RunSnapsRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "SlotCatchRate": {
+          "type": "number",
+          "nullable": true
+        },
+        "SlotCatchRateRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "SlotSnapsRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "SnapweighedGameScript": {
+          "type": "number",
+          "nullable": true
+        },
+        "SnapweighedGameScriptRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TargetPremium": {
+          "type": "number",
+          "nullable": true
+        },
+        "TargetPremiumRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TargetQualityRating": {
+          "type": "number",
+          "nullable": true
+        },
+        "TargetQualityRatingRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TargetAccuracy": {
+          "type": "number",
+          "nullable": true
+        },
+        "TargetAccuracyRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TargetDistance": {
+          "type": "number",
+          "nullable": true
+        },
+        "TargetDistancePerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "TargetDistanceRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TrueCatchRate": {
+          "type": "number",
+          "nullable": true
+        },
+        "TrueCatchRateRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "UncatchableTargets": {
+          "type": "number",
+          "nullable": true
+        },
+        "UncatchableTargetsGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "YardsPerReceptionRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "YardsPerPassRoute": {
+          "type": "number",
+          "nullable": true
+        },
+        "YardsPerPassRouteRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TeamDefensiveSnaps": {
+          "type": "number",
+          "nullable": true
+        },
+        "SoloTackles": {
+          "type": "number",
+          "nullable": true
+        },
+        "SoloTacklesRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "SoloTacklesPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "AssistedTackles": {
+          "type": "number",
+          "nullable": true
+        },
+        "AssistedTacklesRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "AssistedTacklesPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "TotalTackles": {
+          "type": "number",
+          "nullable": true
+        },
+        "TotalTacklesRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TotalTacklesPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "Sacks": {
+          "type": "number",
+          "nullable": true
+        },
+        "SacksRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "SackYards": {
+          "type": "number",
+          "nullable": true
+        },
+        "ForcedFumbles": {
+          "type": "number",
+          "nullable": true
+        },
+        "ForcedFumblesRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "FumbleRecoveries": {
+          "type": "number",
+          "nullable": true
+        },
+        "FumbleRecoveriesRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "BattedPasses": {
+          "type": "number",
+          "nullable": true
+        },
+        "BattedPassesRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TacklesForLoss": {
+          "type": "number",
+          "nullable": true
+        },
+        "TacklesForLossRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "RunStuffs": {
+          "type": "number",
+          "nullable": true
+        },
+        "RunStuffsRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PassBreakups": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassBreakupsRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PassBreakupsPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassBreakupsPerGameRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PassBreakupsPerTarget": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassBreakupsPerTargetRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Interceptions": {
+          "type": "number",
+          "nullable": true
+        },
+        "InterceptionsRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TargetsAllowed": {
+          "type": "number",
+          "nullable": true
+        },
+        "TargetsAllowedRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ReceptionsAllowed": {
+          "type": "number",
+          "nullable": true
+        },
+        "ReceptionsAllowedRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "YardsAllowed": {
+          "type": "number",
+          "nullable": true
+        },
+        "YardsAllowedRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "YardsAllowedPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "YardsAllowedPerGameRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "YardsPerReceptionAllowed": {
+          "type": "number",
+          "nullable": true
+        },
+        "YardsPerReceptionAllowedRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "CatchRateAllowed": {
+          "type": "number",
+          "nullable": true
+        },
+        "CatchRateAllowedRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PasserRatingAllowed": {
+          "type": "number",
+          "nullable": true
+        },
+        "PasserRatingAllowedRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TouchdownsAllowed": {
+          "type": "number",
+          "nullable": true
+        },
+        "TouchdownsAllowedRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "InterceptionsPerTarget": {
+          "type": "number",
+          "nullable": true
+        },
+        "InterceptionsPerTargetRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "CoverageRating": {
+          "type": "number",
+          "nullable": true
+        },
+        "CoverageRatingRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "RunPlayStops": {
+          "type": "number",
+          "nullable": true
+        },
+        "RunPlayStopsRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TargetsAllowedPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "TargetsAllowedPerGameRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ReceptionsAllowedPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "ReceptionsAllowedPerGameRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TargetRate": {
+          "type": "number",
+          "nullable": true
+        },
+        "TargetRateRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "BurnRateRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "AverageCushion": {
+          "type": "number",
+          "nullable": true
+        },
+        "AverageCushionRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "YardsPerTargetAllowed": {
+          "type": "number",
+          "nullable": true
+        },
+        "YardsPerTargetAllowedRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "RoutesDefended": {
+          "type": "number",
+          "nullable": true
+        },
+        "RoutesDefendedRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "RoutesDefendedPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "RoutesDefendedPerGameRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "FantasyPoints": {
+          "type": "number",
+          "nullable": true
+        },
+        "FantasyPointsPerAttempt": {
+          "type": "number",
+          "nullable": true
+        },
+        "FantasyPointsPerAttemptRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "FantasyPointsPerDropBack": {
+          "type": "number",
+          "nullable": true
+        },
+        "FantasyPointsPerDropBackRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "FantasyPointsPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "FantasyPointsPerGameDifferential": {
+          "type": "number",
+          "nullable": true
+        },
+        "FantasyPointsPerGameRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "FantasyPointsPerOpportunity": {
+          "type": "number",
+          "nullable": true
+        },
+        "FantasyPointsPerOpportunityRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "FantasyPointsPerSnap": {
+          "type": "number",
+          "nullable": true
+        },
+        "FantasyPointsPerSnapRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "FantasyPointsPerPassRoute": {
+          "type": "number",
+          "nullable": true
+        },
+        "FantasyPointsPerPassRouteRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "FantasyPointsPerTarget": {
+          "type": "number",
+          "nullable": true
+        },
+        "FantasyPointsPerTargetRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "SlotFantasyPoints": {
+          "type": "number",
+          "nullable": true
+        },
+        "SlotFantasyPointsRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "SlotFantasyPointsPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "SlotFantasyPointsPerGameRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "SlotFantasyPointsPerTarget": {
+          "type": "number",
+          "nullable": true
+        },
+        "SlotFantasyPointsPerTargetRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "FantasyPointsAllowed": {
+          "type": "number",
+          "nullable": true
+        },
+        "FantasyPointsAllowedPerTarget": {
+          "type": "number",
+          "nullable": true
+        },
+        "FantasyPointsAllowedPerTargetRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "FantasyPointsAllowedPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "FantasyPointsAllowedPerGameRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "FantasyPointsAllowedPerSnap": {
+          "type": "number",
+          "nullable": true
+        },
+        "FantasyPointsAllowedPerSnapRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "FantasyPointsAllowedPerCoverSnap": {
+          "type": "number",
+          "nullable": true
+        },
+        "FantasyPointsAllowedPerCoverSnapRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ExpectedFantasyPoints": {
+          "type": "number",
+          "nullable": true
+        },
+        "ExpectedFantasyPointsRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ExpectedFantasyPointsPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "ExpectedFantasyPointsPerGameRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "NormalizedFantasyPointsPerGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "NormalizedFantasyPointsPerGameRank": {
+          "type": "integer",
+          "nullable": true
+        }
+      }
+    }
+  }
+}

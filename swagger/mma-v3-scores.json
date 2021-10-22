@@ -1,0 +1,579 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "MMA v3 Scores",
+    "version": "1.0"
+  },
+  "host": "api.sportsdata.io",
+  "basePath": "/v3/mma/scores",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "securityDefinitions": {
+    "apiKeyHeader": {
+      "type": "apiKey",
+      "name": "Ocp-Apim-Subscription-Key",
+      "in": "header"
+    },
+    "apiKeyQuery": {
+      "type": "apiKey",
+      "name": "key",
+      "in": "query"
+    }
+  },
+  "security": [
+    {
+      "apiKeyHeader": []
+    },
+    {
+      "apiKeyQuery": []
+    }
+  ],
+  "x-servers": [
+    {
+      "url": "http://api.sportsdata.io"
+    },
+    {
+      "url": "https://api.sportsdata.io"
+    },
+    {
+      "url": "http://azure-api.sportsdata.io"
+    },
+    {
+      "url": "https://azure-api.sportsdata.io"
+    }
+  ],
+  "paths": {
+    "/{format}/Fighters": {
+      "get": {
+        "operationId": "Fighters",
+        "summary": "Fighters",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "default": "XML",
+            "enum": [
+              "XML",
+              "JSON"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": null,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Fighter"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/Event/{eventid}": {
+      "get": {
+        "operationId": "Event",
+        "summary": "Event",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "default": "XML",
+            "enum": [
+              "XML",
+              "JSON"
+            ]
+          },
+          {
+            "name": "eventid",
+            "in": "path",
+            "description": "The unique ID of this event. <br> Examples: <code>51</code>, <code>52</code>, etc.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": null,
+            "schema": {
+              "$ref": "#/definitions/EventDetail"
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/Fighter/{fighterid}": {
+      "get": {
+        "operationId": "Fighter",
+        "summary": "Fighter",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "default": "XML",
+            "enum": [
+              "XML",
+              "JSON"
+            ]
+          },
+          {
+            "name": "fighterid",
+            "in": "path",
+            "description": "Each fighter has a unique ID assigned by FantasyData. Fighter IDs can be determined by pulling player related data. Example: <code>140000098</code>",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": null,
+            "schema": {
+              "$ref": "#/definitions/Fighter"
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/Schedule/{league}/{season}": {
+      "get": {
+        "operationId": "Schedule",
+        "summary": "Schedule",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "default": "XML",
+            "enum": [
+              "XML",
+              "JSON"
+            ]
+          },
+          {
+            "name": "league",
+            "in": "path",
+            "description": "The name of the league.<br>Examples: <code>UFC</code>, etc",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "season",
+            "in": "path",
+            "description": "Year of the season.<br>Examples: <code>2019</code>, <code>2020</code>, etc.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": null,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Event"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/Leagues": {
+      "get": {
+        "operationId": "Leagues",
+        "summary": "Leagues",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "default": "XML",
+            "enum": [
+              "XML",
+              "JSON"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": null,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/League"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    }
+  },
+  "tags": [],
+  "definitions": {
+    "Fighter": {
+      "properties": {
+        "FighterId": {
+          "type": "integer",
+          "nullable": false
+        },
+        "FirstName": {
+          "type": "string",
+          "nullable": true
+        },
+        "LastName": {
+          "type": "string",
+          "nullable": true
+        },
+        "Nickname": {
+          "type": "string",
+          "nullable": true
+        },
+        "WeightClass": {
+          "type": "string",
+          "nullable": true
+        },
+        "BirthDate": {
+          "type": "string",
+          "nullable": true
+        },
+        "Height": {
+          "type": "number",
+          "nullable": true
+        },
+        "Weight": {
+          "type": "number",
+          "nullable": true
+        },
+        "Reach": {
+          "type": "number",
+          "nullable": true
+        },
+        "Wins": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Losses": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Draws": {
+          "type": "integer",
+          "nullable": true
+        },
+        "NoContests": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TechnicalKnockouts": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TechnicalKnockoutLosses": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Submissions": {
+          "type": "integer",
+          "nullable": true
+        },
+        "SubmissionLosses": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TitleWins": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TitleLosses": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TitleDraws": {
+          "type": "integer",
+          "nullable": true
+        },
+        "CareerStats": {
+          "$ref": "#/definitions/CareerStat"
+        }
+      }
+    },
+    "CareerStat": {
+      "properties": {
+        "FighterId": {
+          "type": "integer",
+          "nullable": true
+        },
+        "FirstName": {
+          "type": "string",
+          "nullable": true
+        },
+        "LastName": {
+          "type": "string",
+          "nullable": true
+        },
+        "SigStrikesLandedPerMinute": {
+          "type": "number",
+          "nullable": true
+        },
+        "SigStrikeAccuracy": {
+          "type": "number",
+          "nullable": true
+        },
+        "TakedownAverage": {
+          "type": "number",
+          "nullable": true
+        },
+        "SubmissionAverage": {
+          "type": "number",
+          "nullable": true
+        },
+        "KnockoutPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "TechnicalKnockoutPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "DecisionPercentage": {
+          "type": "number",
+          "nullable": true
+        }
+      }
+    },
+    "EventDetail": {
+      "properties": {
+        "Fights": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Fight"
+          }
+        },
+        "EventId": {
+          "type": "integer",
+          "nullable": false
+        },
+        "LeagueId": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Name": {
+          "type": "string",
+          "nullable": true
+        },
+        "ShortName": {
+          "type": "string",
+          "nullable": true
+        },
+        "Season": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Day": {
+          "type": "string",
+          "nullable": true
+        },
+        "DateTime": {
+          "type": "string",
+          "nullable": true
+        },
+        "Status": {
+          "type": "string",
+          "nullable": true
+        },
+        "Active": {
+          "type": "boolean",
+          "nullable": true
+        }
+      }
+    },
+    "Fight": {
+      "properties": {
+        "FightId": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Order": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Status": {
+          "type": "string",
+          "nullable": true
+        },
+        "WeightClass": {
+          "type": "string",
+          "nullable": true
+        },
+        "CardSegment": {
+          "type": "string",
+          "nullable": true
+        },
+        "Referee": {
+          "type": "string",
+          "nullable": true
+        },
+        "Rounds": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ResultClock": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ResultRound": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ResultType": {
+          "type": "string",
+          "nullable": true
+        },
+        "WinnerId": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Fighters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FighterInfo"
+          }
+        },
+        "Active": {
+          "type": "boolean",
+          "nullable": true
+        }
+      }
+    },
+    "FighterInfo": {
+      "properties": {
+        "FighterId": {
+          "type": "integer",
+          "nullable": true
+        },
+        "FirstName": {
+          "type": "string",
+          "nullable": true
+        },
+        "LastName": {
+          "type": "string",
+          "nullable": true
+        },
+        "PreFightWins": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PreFightLosses": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PreFightDraws": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PreFightNoContests": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Winner": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "Moneyline": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Active": {
+          "type": "boolean",
+          "nullable": true
+        }
+      }
+    },
+    "Event": {
+      "properties": {
+        "EventId": {
+          "type": "integer",
+          "nullable": false
+        },
+        "LeagueId": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Name": {
+          "type": "string",
+          "nullable": true
+        },
+        "ShortName": {
+          "type": "string",
+          "nullable": true
+        },
+        "Season": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Day": {
+          "type": "string",
+          "nullable": true
+        },
+        "DateTime": {
+          "type": "string",
+          "nullable": true
+        },
+        "Status": {
+          "type": "string",
+          "nullable": true
+        },
+        "Active": {
+          "type": "boolean",
+          "nullable": true
+        }
+      }
+    },
+    "League": {
+      "properties": {
+        "LeagueId": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Name": {
+          "type": "string",
+          "nullable": true
+        },
+        "Key": {
+          "type": "string",
+          "nullable": true
+        }
+      }
+    }
+  }
+}

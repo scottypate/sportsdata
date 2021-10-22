@@ -1,0 +1,491 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "CWBB v3 Scores",
+    "version": "1.0"
+  },
+  "host": "api.sportsdata.io",
+  "basePath": "/v3/cwbb/scores",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "securityDefinitions": {
+    "apiKeyHeader": {
+      "type": "apiKey",
+      "name": "Ocp-Apim-Subscription-Key",
+      "in": "header"
+    },
+    "apiKeyQuery": {
+      "type": "apiKey",
+      "name": "key",
+      "in": "query"
+    }
+  },
+  "security": [
+    {
+      "apiKeyHeader": []
+    },
+    {
+      "apiKeyQuery": []
+    }
+  ],
+  "x-servers": [
+    {
+      "url": "http://api.sportsdata.io"
+    },
+    {
+      "url": "https://api.sportsdata.io"
+    },
+    {
+      "url": "http://azure-api.sportsdata.io"
+    },
+    {
+      "url": "https://azure-api.sportsdata.io"
+    }
+  ],
+  "paths": {
+    "/{format}/CurrentSeason": {
+      "get": {
+        "operationId": "CurrentSeason",
+        "summary": "Current Season",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "xml",
+              "json"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": null,
+            "schema": {
+              "$ref": "#/definitions/Season"
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/AreAnyGamesInProgress": {
+      "get": {
+        "operationId": "AreAnyGamesInProgress",
+        "summary": "Are Any Games In Progress",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "xml",
+              "json"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": null,
+            "schema": {
+              "type": "boolean",
+              "nullable": false
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/LeagueHierarchy": {
+      "get": {
+        "operationId": "LeagueHierarchyConferencesAndTeams",
+        "summary": "League Hierarchy (Conferences and Teams)",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "xml",
+              "json"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": null,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Conference"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/Teams": {
+      "get": {
+        "operationId": "Teams",
+        "summary": "Teams",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "xml",
+              "json"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": null,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Team"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/Games/{season}": {
+      "get": {
+        "operationId": "Schedules",
+        "summary": "Schedules",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "xml",
+              "json"
+            ]
+          },
+          {
+            "name": "season",
+            "in": "path",
+            "description": "Year of the season (with optional season type).<br>Examples: <code>2020</code>, <code>2020PRE</code>, <code>2020POST</code>, <code>2019</code>, etc.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": null,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Game"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/GamesByDate/{date}": {
+      "get": {
+        "operationId": "GamesByDate",
+        "summary": "Games by Date",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "xml",
+              "json"
+            ]
+          },
+          {
+            "name": "date",
+            "in": "path",
+            "description": "The date of the game(s).<br>Examples: <code>2020-FEB-27</code>, <code>2019-DEC-01</code>.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": null,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Game"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    }
+  },
+  "tags": [],
+  "definitions": {
+    "Season": {
+      "properties": {
+        "CurrentSeason": {
+          "type": "integer",
+          "nullable": false
+        },
+        "StartYear": {
+          "type": "integer",
+          "nullable": false
+        },
+        "EndYear": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Description": {
+          "type": "string",
+          "nullable": true
+        },
+        "RegularSeasonStartDate": {
+          "type": "string",
+          "nullable": true
+        },
+        "PostSeasonStartDate": {
+          "type": "string",
+          "nullable": true
+        },
+        "ApiSeason": {
+          "type": "string",
+          "nullable": true
+        }
+      }
+    },
+    "Conference": {
+      "properties": {
+        "ConferenceID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Name": {
+          "type": "string",
+          "nullable": true
+        },
+        "Teams": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Team"
+          }
+        }
+      }
+    },
+    "Team": {
+      "properties": {
+        "TeamID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Key": {
+          "type": "string",
+          "nullable": true
+        },
+        "Active": {
+          "type": "boolean",
+          "nullable": false
+        },
+        "School": {
+          "type": "string",
+          "nullable": true
+        },
+        "Name": {
+          "type": "string",
+          "nullable": true
+        },
+        "ApRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Wins": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Losses": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ConferenceWins": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ConferenceLosses": {
+          "type": "integer",
+          "nullable": true
+        },
+        "GlobalTeamID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "ConferenceID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Conference": {
+          "type": "string",
+          "nullable": true
+        },
+        "TeamLogoUrl": {
+          "type": "string",
+          "nullable": true
+        },
+        "ShortDisplayName": {
+          "type": "string",
+          "nullable": true
+        }
+      }
+    },
+    "Game": {
+      "properties": {
+        "GameID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Season": {
+          "type": "integer",
+          "nullable": false
+        },
+        "SeasonType": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Status": {
+          "type": "string",
+          "nullable": true
+        },
+        "Day": {
+          "type": "string",
+          "nullable": true
+        },
+        "DateTime": {
+          "type": "string",
+          "nullable": true
+        },
+        "AwayTeam": {
+          "type": "string",
+          "nullable": true
+        },
+        "HomeTeam": {
+          "type": "string",
+          "nullable": true
+        },
+        "AwayTeamID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "HomeTeamID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "AwayTeamScore": {
+          "type": "integer",
+          "nullable": true
+        },
+        "HomeTeamScore": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Updated": {
+          "type": "string",
+          "nullable": true
+        },
+        "Period": {
+          "type": "string",
+          "nullable": true
+        },
+        "TimeRemainingMinutes": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TimeRemainingSeconds": {
+          "type": "integer",
+          "nullable": true
+        },
+        "GlobalGameID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "GlobalAwayTeamID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "GlobalHomeTeamID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Periods": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Period"
+          }
+        }
+      }
+    },
+    "Period": {
+      "properties": {
+        "PeriodID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "GameID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Number": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Name": {
+          "type": "string",
+          "nullable": true
+        },
+        "Type": {
+          "type": "string",
+          "nullable": true
+        },
+        "AwayScore": {
+          "type": "integer",
+          "nullable": true
+        },
+        "HomeScore": {
+          "type": "integer",
+          "nullable": true
+        }
+      }
+    }
+  }
+}

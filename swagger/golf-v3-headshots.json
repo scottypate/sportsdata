@@ -1,0 +1,122 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Golf v3 Headshots",
+    "version": "1.0"
+  },
+  "host": "api.sportsdata.io",
+  "basePath": "/v3/golf/headshots",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "securityDefinitions": {
+    "apiKeyHeader": {
+      "type": "apiKey",
+      "name": "Ocp-Apim-Subscription-Key",
+      "in": "header"
+    },
+    "apiKeyQuery": {
+      "type": "apiKey",
+      "name": "key",
+      "in": "query"
+    }
+  },
+  "security": [
+    {
+      "apiKeyHeader": []
+    },
+    {
+      "apiKeyQuery": []
+    }
+  ],
+  "x-servers": [
+    {
+      "url": "http://api.sportsdata.io"
+    },
+    {
+      "url": "https://api.sportsdata.io"
+    },
+    {
+      "url": "http://azure-api.sportsdata.io"
+    },
+    {
+      "url": "https://azure-api.sportsdata.io"
+    }
+  ],
+  "paths": {
+    "/{format}/Headshots": {
+      "get": {
+        "operationId": "Headshots",
+        "summary": "Headshots",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "default": "XML",
+            "enum": [
+              "XML",
+              "JSON"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": null,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Headshot"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    }
+  },
+  "tags": [],
+  "definitions": {
+    "Headshot": {
+      "properties": {
+        "PlayerID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Name": {
+          "type": "string",
+          "nullable": true
+        },
+        "PreferredHostedHeadshotUrl": {
+          "type": "string",
+          "nullable": true
+        },
+        "PreferredHostedHeadshotUpdated": {
+          "type": "string",
+          "nullable": true
+        },
+        "HostedHeadshotWithBackgroundUrl": {
+          "type": "string",
+          "nullable": true
+        },
+        "HostedHeadshotWithBackgroundUpdated": {
+          "type": "string",
+          "nullable": true
+        },
+        "HostedHeadshotNoBackgroundUrl": {
+          "type": "string",
+          "nullable": true
+        },
+        "HostedHeadshotNoBackgroundUpdated": {
+          "type": "string",
+          "nullable": true
+        }
+      }
+    }
+  }
+}

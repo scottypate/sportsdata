@@ -1,0 +1,1826 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "CFB v3 Scores",
+    "version": "1.0",
+    "description": "CFB schedules, scores, team stats, odds, weather, and news API."
+  },
+  "host": "api.sportsdata.io",
+  "basePath": "/v3/cfb/scores",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "securityDefinitions": {
+    "apiKeyHeader": {
+      "type": "apiKey",
+      "name": "Ocp-Apim-Subscription-Key",
+      "in": "header"
+    },
+    "apiKeyQuery": {
+      "type": "apiKey",
+      "name": "subscription-key",
+      "in": "query"
+    }
+  },
+  "security": [
+    {
+      "apiKeyHeader": []
+    },
+    {
+      "apiKeyQuery": []
+    }
+  ],
+  "x-servers": [
+    {
+      "url": "http://api.sportsdata.io"
+    },
+    {
+      "url": "https://api.sportsdata.io"
+    },
+    {
+      "url": "http://azure-api.sportsdata.io"
+    },
+    {
+      "url": "https://azure-api.sportsdata.io"
+    }
+  ],
+  "paths": {
+    "/{format}/AreAnyGamesInProgress": {
+      "get": {
+        "description": "Returns <code>true</code> if there is at least one game being played at the time of the request or <code>false</code> if there are none.",
+        "operationId": "AreGamesInProgress",
+        "summary": "Are Games In Progress",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>xml</code> or <code>json</code>.",
+            "required": true,
+            "type": "string",
+            "default": "XML",
+            "enum": [
+              "XML",
+              "JSON"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "boolean",
+              "nullable": false
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/CurrentSeason": {
+      "get": {
+        "operationId": "CurrentSeason",
+        "summary": "Current Season",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>xml</code> or <code>json</code>.",
+            "required": true,
+            "type": "string",
+            "default": "XML",
+            "enum": [
+              "XML",
+              "JSON"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "nullable": false
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/CurrentWeek": {
+      "get": {
+        "operationId": "CurrentWeek",
+        "summary": "Current Week",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>xml</code> or <code>json</code>.",
+            "required": true,
+            "type": "string",
+            "default": "XML",
+            "enum": [
+              "XML",
+              "JSON"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "nullable": true
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/LeagueHierarchy": {
+      "get": {
+        "operationId": "ConferenceHierarchyWithTeams",
+        "summary": "Conference Hierarchy (with Teams)",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>xml</code> or <code>json</code>.",
+            "required": true,
+            "type": "string",
+            "default": "XML",
+            "enum": [
+              "XML",
+              "JSON"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Conference"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/Teams": {
+      "get": {
+        "operationId": "Teams",
+        "summary": "Teams",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>xml</code> or <code>json</code>.",
+            "required": true,
+            "type": "string",
+            "default": "XML",
+            "enum": [
+              "XML",
+              "JSON"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Team"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/Games/{season}": {
+      "get": {
+        "operationId": "Schedules",
+        "summary": "Schedules",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>xml</code> or <code>json</code>.",
+            "required": true,
+            "type": "string",
+            "default": "XML",
+            "enum": [
+              "XML",
+              "JSON"
+            ]
+          },
+          {
+            "name": "season",
+            "in": "path",
+            "description": "Year of the season (with optional season type).<br>Examples: <code>2018</code>, <code>2018PRE</code>, <code>2018POST</code>, <code>2018STAR</code>, <code>2019</code>, etc.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Game"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/GamesByDate/{date}": {
+      "get": {
+        "operationId": "GamesByDate",
+        "summary": "Games by Date",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>xml</code> or <code>json</code>.",
+            "required": true,
+            "type": "string",
+            "default": "XML",
+            "enum": [
+              "XML",
+              "JSON"
+            ]
+          },
+          {
+            "name": "date",
+            "in": "path",
+            "description": "\n          The date of the game(s).\n          <br>Examples: <code>2016-SEP-01</code>, <code>2017-SEP-10</code>.\n        ",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Game"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/GamesByWeek/{season}/{week}": {
+      "get": {
+        "operationId": "GamesByWeek",
+        "summary": "Games by Week",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>xml</code> or <code>json</code>.",
+            "required": true,
+            "type": "string",
+            "default": "XML",
+            "enum": [
+              "XML",
+              "JSON"
+            ]
+          },
+          {
+            "name": "season",
+            "in": "path",
+            "description": "\n          Year of the season.\n          <br>Examples: <code>2015</code>, <code>2016</code>, etc.\n        ",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "week",
+            "in": "path",
+            "description": "\n          The week of the game(s).\n          <br>Examples: <code>1</code>, <code>2</code>, <code>3</code>, etc.\n        ",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Game"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/TeamGameStatsByWeek/{season}/{week}": {
+      "get": {
+        "operationId": "TeamGameStatsByWeek",
+        "summary": "Team Game Stats by Week",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>xml</code> or <code>json</code>.",
+            "required": true,
+            "type": "string",
+            "default": "XML",
+            "enum": [
+              "XML",
+              "JSON"
+            ]
+          },
+          {
+            "name": "season",
+            "in": "path",
+            "description": "\n          Year of the season.\n          <br>Examples: <code>2015</code>, <code>2016</code>, etc.\n        ",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "week",
+            "in": "path",
+            "description": "\n          The week of the game(s).\n          <br>Examples: <code>1</code>, <code>2</code>, <code>3</code>, etc.\n        ",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TeamGame"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/TeamSeasonStats/{season}": {
+      "get": {
+        "operationId": "TeamSeasonStatsStandings",
+        "summary": "Team Season Stats & Standings",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>xml</code> or <code>json</code>.",
+            "required": true,
+            "type": "string",
+            "default": "XML",
+            "enum": [
+              "XML",
+              "JSON"
+            ]
+          },
+          {
+            "name": "season",
+            "in": "path",
+            "description": "Year of the season (with optional season type).<br>Examples: <code>2017</code>, <code>2017POST</code>, <code>2018</code>.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TeamSeason"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/Stadiums": {
+      "get": {
+        "operationId": "Stadiums",
+        "summary": "Stadiums",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>xml</code> or <code>json</code>.",
+            "required": true,
+            "type": "string",
+            "default": "XML",
+            "enum": [
+              "XML",
+              "JSON"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Stadium"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/CurrentSeasonType": {
+      "get": {
+        "operationId": "CurrentSeasontype",
+        "summary": "Current SeasonType",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>xml</code> or <code>json</code>.",
+            "required": true,
+            "type": "string",
+            "default": "XML",
+            "enum": [
+              "XML",
+              "JSON"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/CurrentSeasonDetails": {
+      "get": {
+        "operationId": "CurrentSeasonDetails",
+        "summary": "Current Season Details",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>xml</code> or <code>json</code>.",
+            "required": true,
+            "type": "string",
+            "default": "XML",
+            "enum": [
+              "XML",
+              "JSON"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Season"
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/Players": {
+      "get": {
+        "operationId": "PlayerDetailsByActive",
+        "summary": "Player Details By Active",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "XML",
+              "JSON"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": null,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Player"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/Player/{playerid}": {
+      "get": {
+        "operationId": "PlayerDetailsByPlayer",
+        "summary": "Player Details By Player",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "XML",
+              "JSON"
+            ]
+          },
+          {
+            "name": "playerid",
+            "in": "path",
+            "description": "\n          Unique FantasyData Player ID.\n          Example:<code>50002016</code>.\n        ",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": null,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Player"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/Players/{team}": {
+      "get": {
+        "operationId": "PlayerDetailsByTeam",
+        "summary": "Player Details by Team",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "XML",
+              "JSON"
+            ]
+          },
+          {
+            "name": "team",
+            "in": "path",
+            "description": "\n          The abbreviation of the requested team.\n          <br>Examples: <code>SF</code>, <code>NYY</code>.\n        ",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": null,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Player"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    }
+  },
+  "tags": [],
+  "definitions": {
+    "Conference": {
+      "properties": {
+        "ConferenceID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Name": {
+          "type": "string",
+          "nullable": true
+        },
+        "Teams": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Team"
+          }
+        },
+        "ConferenceName": {
+          "type": "string",
+          "nullable": true
+        },
+        "DivisionName": {
+          "type": "string",
+          "nullable": true
+        }
+      }
+    },
+    "Team": {
+      "properties": {
+        "TeamID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Key": {
+          "type": "string",
+          "nullable": true
+        },
+        "Active": {
+          "type": "boolean",
+          "nullable": false
+        },
+        "School": {
+          "type": "string",
+          "nullable": true
+        },
+        "Name": {
+          "type": "string",
+          "nullable": true
+        },
+        "StadiumID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "ApRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Wins": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Losses": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ConferenceWins": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ConferenceLosses": {
+          "type": "integer",
+          "nullable": true
+        },
+        "GlobalTeamID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "CoachesRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PlayoffRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TeamLogoUrl": {
+          "type": "string",
+          "nullable": true
+        },
+        "ConferenceID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Conference": {
+          "type": "string",
+          "nullable": true
+        },
+        "ShortDisplayName": {
+          "type": "string",
+          "nullable": true
+        },
+        "RankWeek": {
+          "type": "integer",
+          "nullable": true
+        },
+        "RankSeason": {
+          "type": "integer",
+          "nullable": true
+        },
+        "RankSeasonType": {
+          "type": "integer",
+          "nullable": true
+        }
+      }
+    },
+    "Game": {
+      "properties": {
+        "GameID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Season": {
+          "type": "integer",
+          "nullable": false
+        },
+        "SeasonType": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Week": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Status": {
+          "type": "string",
+          "nullable": true
+        },
+        "Day": {
+          "type": "string",
+          "nullable": true
+        },
+        "DateTime": {
+          "type": "string",
+          "nullable": true
+        },
+        "AwayTeam": {
+          "type": "string",
+          "nullable": true
+        },
+        "HomeTeam": {
+          "type": "string",
+          "nullable": true
+        },
+        "AwayTeamID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "HomeTeamID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "AwayTeamName": {
+          "type": "string",
+          "nullable": true
+        },
+        "HomeTeamName": {
+          "type": "string",
+          "nullable": true
+        },
+        "AwayTeamScore": {
+          "type": "integer",
+          "nullable": true
+        },
+        "HomeTeamScore": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Period": {
+          "type": "string",
+          "nullable": true
+        },
+        "TimeRemainingMinutes": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TimeRemainingSeconds": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PointSpread": {
+          "type": "number",
+          "nullable": true
+        },
+        "OverUnder": {
+          "type": "number",
+          "nullable": true
+        },
+        "AwayTeamMoneyLine": {
+          "type": "integer",
+          "nullable": true
+        },
+        "HomeTeamMoneyLine": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Updated": {
+          "type": "string",
+          "nullable": true
+        },
+        "Created": {
+          "type": "string",
+          "nullable": true
+        },
+        "GlobalGameID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "GlobalAwayTeamID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "GlobalHomeTeamID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "StadiumID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Stadium": {
+          "$ref": "#/definitions/Stadium"
+        },
+        "YardLine": {
+          "type": "integer",
+          "nullable": true
+        },
+        "YardLineTerritory": {
+          "type": "string",
+          "nullable": true
+        },
+        "Down": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Distance": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Possession": {
+          "type": "string",
+          "nullable": true
+        },
+        "Periods": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Period"
+          }
+        },
+        "IsClosed": {
+          "type": "boolean",
+          "nullable": false
+        },
+        "GameEndDateTime": {
+          "type": "string",
+          "nullable": true
+        },
+        "Title": {
+          "type": "string",
+          "nullable": true
+        },
+        "HomeRotationNumber": {
+          "type": "integer",
+          "nullable": true
+        },
+        "AwayRotationNumber": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Channel": {
+          "type": "string",
+          "nullable": true
+        },
+        "NeutralVenue": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "AwayPointSpreadPayout": {
+          "type": "integer",
+          "nullable": true
+        },
+        "HomePointSpreadPayout": {
+          "type": "integer",
+          "nullable": true
+        },
+        "OverPayout": {
+          "type": "integer",
+          "nullable": true
+        },
+        "UnderPayout": {
+          "type": "integer",
+          "nullable": true
+        }
+      }
+    },
+    "Stadium": {
+      "properties": {
+        "StadiumID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Active": {
+          "type": "boolean",
+          "nullable": false
+        },
+        "Name": {
+          "type": "string",
+          "nullable": true
+        },
+        "Dome": {
+          "type": "boolean",
+          "nullable": false
+        },
+        "City": {
+          "type": "string",
+          "nullable": true
+        },
+        "State": {
+          "type": "string",
+          "nullable": true
+        },
+        "GeoLat": {
+          "type": "number",
+          "nullable": true
+        },
+        "GeoLong": {
+          "type": "number",
+          "nullable": true
+        }
+      }
+    },
+    "Period": {
+      "properties": {
+        "PeriodID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "GameID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Number": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Name": {
+          "type": "string",
+          "nullable": true
+        },
+        "AwayScore": {
+          "type": "integer",
+          "nullable": true
+        },
+        "HomeScore": {
+          "type": "integer",
+          "nullable": true
+        }
+      }
+    },
+    "TeamGame": {
+      "properties": {
+        "StatID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "TeamID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "SeasonType": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Season": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Name": {
+          "type": "string",
+          "nullable": true
+        },
+        "Team": {
+          "type": "string",
+          "nullable": true
+        },
+        "Score": {
+          "type": "integer",
+          "nullable": true
+        },
+        "OpponentScore": {
+          "type": "integer",
+          "nullable": true
+        },
+        "FirstDowns": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ThirdDownConversions": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ThirdDownAttempts": {
+          "type": "integer",
+          "nullable": true
+        },
+        "FourthDownConversions": {
+          "type": "integer",
+          "nullable": true
+        },
+        "FourthDownAttempts": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Penalties": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PenaltyYards": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TimeOfPossessionMinutes": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TimeOfPossessionSeconds": {
+          "type": "integer",
+          "nullable": true
+        },
+        "GlobalTeamID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Week": {
+          "type": "integer",
+          "nullable": true
+        },
+        "GameID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "OpponentID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Opponent": {
+          "type": "string",
+          "nullable": true
+        },
+        "Day": {
+          "type": "string",
+          "nullable": true
+        },
+        "DateTime": {
+          "type": "string",
+          "nullable": true
+        },
+        "HomeOrAway": {
+          "type": "string",
+          "nullable": true
+        },
+        "IsGameOver": {
+          "type": "boolean",
+          "nullable": false
+        },
+        "GlobalGameID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "GlobalOpponentID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Updated": {
+          "type": "string",
+          "nullable": true
+        },
+        "Created": {
+          "type": "string",
+          "nullable": true
+        },
+        "Games": {
+          "type": "integer",
+          "nullable": true
+        },
+        "FantasyPoints": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassingAttempts": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassingCompletions": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassingYards": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassingCompletionPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassingYardsPerAttempt": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassingYardsPerCompletion": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassingTouchdowns": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassingInterceptions": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassingRating": {
+          "type": "number",
+          "nullable": true
+        },
+        "RushingAttempts": {
+          "type": "number",
+          "nullable": true
+        },
+        "RushingYards": {
+          "type": "number",
+          "nullable": true
+        },
+        "RushingYardsPerAttempt": {
+          "type": "number",
+          "nullable": true
+        },
+        "RushingTouchdowns": {
+          "type": "number",
+          "nullable": true
+        },
+        "RushingLong": {
+          "type": "number",
+          "nullable": true
+        },
+        "Receptions": {
+          "type": "number",
+          "nullable": true
+        },
+        "ReceivingYards": {
+          "type": "number",
+          "nullable": true
+        },
+        "ReceivingYardsPerReception": {
+          "type": "number",
+          "nullable": true
+        },
+        "ReceivingTouchdowns": {
+          "type": "number",
+          "nullable": true
+        },
+        "ReceivingLong": {
+          "type": "number",
+          "nullable": true
+        },
+        "PuntReturns": {
+          "type": "number",
+          "nullable": true
+        },
+        "PuntReturnYards": {
+          "type": "number",
+          "nullable": true
+        },
+        "PuntReturnYardsPerAttempt": {
+          "type": "number",
+          "nullable": true
+        },
+        "PuntReturnTouchdowns": {
+          "type": "number",
+          "nullable": true
+        },
+        "PuntReturnLong": {
+          "type": "number",
+          "nullable": true
+        },
+        "KickReturns": {
+          "type": "number",
+          "nullable": true
+        },
+        "KickReturnYards": {
+          "type": "number",
+          "nullable": true
+        },
+        "KickReturnYardsPerAttempt": {
+          "type": "number",
+          "nullable": true
+        },
+        "KickReturnTouchdowns": {
+          "type": "number",
+          "nullable": true
+        },
+        "KickReturnLong": {
+          "type": "number",
+          "nullable": true
+        },
+        "Punts": {
+          "type": "number",
+          "nullable": true
+        },
+        "PuntYards": {
+          "type": "number",
+          "nullable": true
+        },
+        "PuntAverage": {
+          "type": "number",
+          "nullable": true
+        },
+        "PuntLong": {
+          "type": "number",
+          "nullable": true
+        },
+        "FieldGoalsAttempted": {
+          "type": "number",
+          "nullable": true
+        },
+        "FieldGoalsMade": {
+          "type": "number",
+          "nullable": true
+        },
+        "FieldGoalPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "FieldGoalsLongestMade": {
+          "type": "number",
+          "nullable": true
+        },
+        "ExtraPointsAttempted": {
+          "type": "number",
+          "nullable": true
+        },
+        "ExtraPointsMade": {
+          "type": "number",
+          "nullable": true
+        },
+        "Interceptions": {
+          "type": "number",
+          "nullable": true
+        },
+        "InterceptionReturnYards": {
+          "type": "number",
+          "nullable": true
+        },
+        "InterceptionReturnTouchdowns": {
+          "type": "number",
+          "nullable": true
+        },
+        "SoloTackles": {
+          "type": "number",
+          "nullable": true
+        },
+        "AssistedTackles": {
+          "type": "number",
+          "nullable": true
+        },
+        "TacklesForLoss": {
+          "type": "number",
+          "nullable": true
+        },
+        "Sacks": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassesDefended": {
+          "type": "number",
+          "nullable": true
+        },
+        "FumblesRecovered": {
+          "type": "number",
+          "nullable": true
+        },
+        "FumbleReturnTouchdowns": {
+          "type": "number",
+          "nullable": true
+        },
+        "QuarterbackHurries": {
+          "type": "number",
+          "nullable": true
+        },
+        "Fumbles": {
+          "type": "number",
+          "nullable": true
+        },
+        "FumblesLost": {
+          "type": "number",
+          "nullable": true
+        }
+      }
+    },
+    "TeamSeason": {
+      "properties": {
+        "StatID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "TeamID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "SeasonType": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Season": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Name": {
+          "type": "string",
+          "nullable": true
+        },
+        "Team": {
+          "type": "string",
+          "nullable": true
+        },
+        "Wins": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Losses": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PointsFor": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PointsAgainst": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ConferenceWins": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ConferenceLosses": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ConferencePointsFor": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ConferencePointsAgainst": {
+          "type": "integer",
+          "nullable": true
+        },
+        "HomeWins": {
+          "type": "integer",
+          "nullable": true
+        },
+        "HomeLosses": {
+          "type": "integer",
+          "nullable": true
+        },
+        "RoadWins": {
+          "type": "integer",
+          "nullable": true
+        },
+        "RoadLosses": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Streak": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Score": {
+          "type": "integer",
+          "nullable": true
+        },
+        "OpponentScore": {
+          "type": "integer",
+          "nullable": true
+        },
+        "FirstDowns": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ThirdDownConversions": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ThirdDownAttempts": {
+          "type": "integer",
+          "nullable": true
+        },
+        "FourthDownConversions": {
+          "type": "integer",
+          "nullable": true
+        },
+        "FourthDownAttempts": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Penalties": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PenaltyYards": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TimeOfPossessionMinutes": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TimeOfPossessionSeconds": {
+          "type": "integer",
+          "nullable": true
+        },
+        "GlobalTeamID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ConferenceRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "DivisionRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Updated": {
+          "type": "string",
+          "nullable": true
+        },
+        "Created": {
+          "type": "string",
+          "nullable": true
+        },
+        "Games": {
+          "type": "integer",
+          "nullable": true
+        },
+        "FantasyPoints": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassingAttempts": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassingCompletions": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassingYards": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassingCompletionPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassingYardsPerAttempt": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassingYardsPerCompletion": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassingTouchdowns": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassingInterceptions": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassingRating": {
+          "type": "number",
+          "nullable": true
+        },
+        "RushingAttempts": {
+          "type": "number",
+          "nullable": true
+        },
+        "RushingYards": {
+          "type": "number",
+          "nullable": true
+        },
+        "RushingYardsPerAttempt": {
+          "type": "number",
+          "nullable": true
+        },
+        "RushingTouchdowns": {
+          "type": "number",
+          "nullable": true
+        },
+        "RushingLong": {
+          "type": "number",
+          "nullable": true
+        },
+        "Receptions": {
+          "type": "number",
+          "nullable": true
+        },
+        "ReceivingYards": {
+          "type": "number",
+          "nullable": true
+        },
+        "ReceivingYardsPerReception": {
+          "type": "number",
+          "nullable": true
+        },
+        "ReceivingTouchdowns": {
+          "type": "number",
+          "nullable": true
+        },
+        "ReceivingLong": {
+          "type": "number",
+          "nullable": true
+        },
+        "PuntReturns": {
+          "type": "number",
+          "nullable": true
+        },
+        "PuntReturnYards": {
+          "type": "number",
+          "nullable": true
+        },
+        "PuntReturnYardsPerAttempt": {
+          "type": "number",
+          "nullable": true
+        },
+        "PuntReturnTouchdowns": {
+          "type": "number",
+          "nullable": true
+        },
+        "PuntReturnLong": {
+          "type": "number",
+          "nullable": true
+        },
+        "KickReturns": {
+          "type": "number",
+          "nullable": true
+        },
+        "KickReturnYards": {
+          "type": "number",
+          "nullable": true
+        },
+        "KickReturnYardsPerAttempt": {
+          "type": "number",
+          "nullable": true
+        },
+        "KickReturnTouchdowns": {
+          "type": "number",
+          "nullable": true
+        },
+        "KickReturnLong": {
+          "type": "number",
+          "nullable": true
+        },
+        "Punts": {
+          "type": "number",
+          "nullable": true
+        },
+        "PuntYards": {
+          "type": "number",
+          "nullable": true
+        },
+        "PuntAverage": {
+          "type": "number",
+          "nullable": true
+        },
+        "PuntLong": {
+          "type": "number",
+          "nullable": true
+        },
+        "FieldGoalsAttempted": {
+          "type": "number",
+          "nullable": true
+        },
+        "FieldGoalsMade": {
+          "type": "number",
+          "nullable": true
+        },
+        "FieldGoalPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "FieldGoalsLongestMade": {
+          "type": "number",
+          "nullable": true
+        },
+        "ExtraPointsAttempted": {
+          "type": "number",
+          "nullable": true
+        },
+        "ExtraPointsMade": {
+          "type": "number",
+          "nullable": true
+        },
+        "Interceptions": {
+          "type": "number",
+          "nullable": true
+        },
+        "InterceptionReturnYards": {
+          "type": "number",
+          "nullable": true
+        },
+        "InterceptionReturnTouchdowns": {
+          "type": "number",
+          "nullable": true
+        },
+        "SoloTackles": {
+          "type": "number",
+          "nullable": true
+        },
+        "AssistedTackles": {
+          "type": "number",
+          "nullable": true
+        },
+        "TacklesForLoss": {
+          "type": "number",
+          "nullable": true
+        },
+        "Sacks": {
+          "type": "number",
+          "nullable": true
+        },
+        "PassesDefended": {
+          "type": "number",
+          "nullable": true
+        },
+        "FumblesRecovered": {
+          "type": "number",
+          "nullable": true
+        },
+        "FumbleReturnTouchdowns": {
+          "type": "number",
+          "nullable": true
+        },
+        "QuarterbackHurries": {
+          "type": "number",
+          "nullable": true
+        },
+        "Fumbles": {
+          "type": "number",
+          "nullable": true
+        },
+        "FumblesLost": {
+          "type": "number",
+          "nullable": true
+        }
+      }
+    },
+    "Season": {
+      "properties": {
+        "Season": {
+          "type": "integer",
+          "nullable": false
+        },
+        "StartYear": {
+          "type": "integer",
+          "nullable": false
+        },
+        "EndYear": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Description": {
+          "type": "string",
+          "nullable": true
+        },
+        "ApiSeason": {
+          "type": "string",
+          "nullable": true
+        },
+        "ApiWeek": {
+          "type": "integer",
+          "nullable": true
+        }
+      }
+    },
+    "Player": {
+      "properties": {
+        "PlayerID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "FirstName": {
+          "type": "string",
+          "nullable": true
+        },
+        "LastName": {
+          "type": "string",
+          "nullable": true
+        },
+        "TeamID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Team": {
+          "type": "string",
+          "nullable": true
+        },
+        "Jersey": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Position": {
+          "type": "string",
+          "nullable": true
+        },
+        "PositionCategory": {
+          "type": "string",
+          "nullable": true
+        },
+        "Class": {
+          "type": "string",
+          "nullable": true
+        },
+        "Height": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Weight": {
+          "type": "integer",
+          "nullable": true
+        },
+        "BirthCity": {
+          "type": "string",
+          "nullable": true
+        },
+        "BirthState": {
+          "type": "string",
+          "nullable": true
+        },
+        "Updated": {
+          "type": "string",
+          "nullable": true
+        },
+        "Created": {
+          "type": "string",
+          "nullable": true
+        },
+        "GlobalTeamID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "InjuryStatus": {
+          "type": "string",
+          "nullable": true
+        },
+        "InjuryBodyPart": {
+          "type": "string",
+          "nullable": true
+        },
+        "InjuryStartDate": {
+          "type": "string",
+          "nullable": true
+        },
+        "InjuryNotes": {
+          "type": "string",
+          "nullable": true
+        }
+      }
+    }
+  }
+}

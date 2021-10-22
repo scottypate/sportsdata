@@ -1,0 +1,45 @@
+# MlbPlayByPlayPlay
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**play_id** | **int** |  | [optional] 
+**inning_id** | **int** |  | [optional] 
+**inning_number** | **int** |  | [optional] 
+**inning_half** | **str** |  | [optional] 
+**play_number** | **int** |  | [optional] 
+**inning_batter_number** | **int** |  | [optional] 
+**away_team_runs** | **int** |  | [optional] 
+**home_team_runs** | **int** |  | [optional] 
+**hitter_id** | **int** |  | [optional] 
+**pitcher_id** | **int** |  | [optional] 
+**hitter_team_id** | **int** |  | [optional] 
+**pitcher_team_id** | **int** |  | [optional] 
+**hitter_name** | **str** |  | [optional] 
+**pitcher_name** | **str** |  | [optional] 
+**pitcher_throw_hand** | **str** |  | [optional] 
+**hitter_bat_hand** | **str** |  | [optional] 
+**hitter_position** | **str** |  | [optional] 
+**outs** | **int** |  | [optional] 
+**balls** | **int** |  | [optional] 
+**strikes** | **int** |  | [optional] 
+**pitch_number_this_at_bat** | **int** |  | [optional] 
+**result** | **str** |  | [optional] 
+**number_of_outs_on_play** | **int** |  | [optional] 
+**runs_batted_in** | **int** |  | [optional] 
+**at_bat** | **bool** |  | [optional] 
+**strikeout** | **bool** |  | [optional] 
+**walk** | **bool** |  | [optional] 
+**hit** | **bool** |  | [optional] 
+**out** | **bool** |  | [optional] 
+**sacrifice** | **bool** |  | [optional] 
+**error** | **bool** |  | [optional] 
+**updated** | **str** |  | [optional] 
+**description** | **str** |  | [optional] 
+**pitches** | [**list[MlbPlayByPlayPitch]**](MlbPlayByPlayPitch.md) |  | [optional] 
+**runner1_id** | **int** |  | [optional] 
+**runner2_id** | **int** |  | [optional] 
+**runner3_id** | **int** |  | [optional] 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+

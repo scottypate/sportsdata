@@ -1,0 +1,713 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "LoL v3 Projections",
+    "version": "1.0",
+    "description": "LoL v3 Projections"
+  },
+  "host": "api.sportsdata.io",
+  "basePath": "/v3/lol/projections",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "securityDefinitions": {
+    "apiKeyHeader": {
+      "type": "apiKey",
+      "name": "Ocp-Apim-Subscription-Key",
+      "in": "header"
+    },
+    "apiKeyQuery": {
+      "type": "apiKey",
+      "name": "subscription-key",
+      "in": "query"
+    }
+  },
+  "security": [
+    {
+      "apiKeyHeader": []
+    },
+    {
+      "apiKeyQuery": []
+    }
+  ],
+  "x-servers": [
+    {
+      "url": "http://api.sportsdata.io"
+    },
+    {
+      "url": "https://api.sportsdata.io"
+    },
+    {
+      "url": "http://azure-api.sportsdata.io"
+    },
+    {
+      "url": "https://azure-api.sportsdata.io"
+    }
+  ],
+  "paths": {
+    "/{format}/PlayerGameProjectionStatsByDate/{date}": {
+      "get": {
+        "description": "Projected Player Game Stats by Date",
+        "operationId": "ProjectedPlayerGameStatsByDate",
+        "summary": "Projected Player Game Stats by Date",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "default": "xml",
+            "enum": [
+              "xml",
+              "json"
+            ]
+          },
+          {
+            "name": "date",
+            "in": "path",
+            "description": "The date of the game(s).\n<br>Example: <code>2019-01-20</code>",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PlayerGameProjection"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/PlayerGameProjectionStatsByPlayer/{date}/{playerid}": {
+      "get": {
+        "description": "Projected Player Game Stats by Date",
+        "operationId": "ProjectedPlayerGameStatsByPlayer",
+        "summary": "Projected Player Game Stats by Player",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "default": "xml",
+            "enum": [
+              "xml",
+              "json"
+            ]
+          },
+          {
+            "name": "date",
+            "in": "path",
+            "description": "The date of the game(s).\n<br>Example: <code>2019-01-20</code>",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "playerid",
+            "in": "path",
+            "description": "Unique FantasyData Player ID.\nExample:<code>100001500</code>.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PlayerGameProjection"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/DfsSlatesByDate/{date}": {
+      "get": {
+        "operationId": "DfsSlatesByDate",
+        "summary": "Dfs Slates By Date",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "json",
+              "xml"
+            ]
+          },
+          {
+            "name": "date",
+            "in": "path",
+            "description": "The date of the game(s).\n<br>Examples: <code>2017-02-27</code>, <code>2017-09-01</code>.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": null,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DfsSlate"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    }
+  },
+  "tags": [],
+  "definitions": {
+    "PlayerGameProjection": {
+      "properties": {
+        "GameId": {
+          "type": "integer",
+          "nullable": false
+        },
+        "OpponentId": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Opponent": {
+          "type": "string",
+          "nullable": true
+        },
+        "Day": {
+          "type": "string",
+          "nullable": true
+        },
+        "DateTime": {
+          "type": "string",
+          "nullable": true
+        },
+        "Position": {
+          "type": "string",
+          "nullable": true
+        },
+        "PlayerId": {
+          "type": "integer",
+          "nullable": false
+        },
+        "TeamId": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Team": {
+          "type": "string",
+          "nullable": true
+        },
+        "Name": {
+          "type": "string",
+          "nullable": true
+        },
+        "MatchName": {
+          "type": "string",
+          "nullable": true
+        },
+        "Kills": {
+          "type": "number",
+          "nullable": true
+        },
+        "Assists": {
+          "type": "number",
+          "nullable": true
+        },
+        "Deaths": {
+          "type": "number",
+          "nullable": true
+        },
+        "LargestKillingSpree": {
+          "type": "number",
+          "nullable": true
+        },
+        "LargestMultiKill": {
+          "type": "number",
+          "nullable": true
+        },
+        "KillingSpree": {
+          "type": "number",
+          "nullable": true
+        },
+        "LongestTimeSpentLiving": {
+          "type": "number",
+          "nullable": true
+        },
+        "DoubleKills": {
+          "type": "number",
+          "nullable": true
+        },
+        "TripleKills": {
+          "type": "number",
+          "nullable": true
+        },
+        "QuadraKills": {
+          "type": "number",
+          "nullable": true
+        },
+        "PentaKills": {
+          "type": "number",
+          "nullable": true
+        },
+        "UnrealKills": {
+          "type": "number",
+          "nullable": true
+        },
+        "TotalDamageDealt": {
+          "type": "number",
+          "nullable": true
+        },
+        "MagicDamageDealt": {
+          "type": "number",
+          "nullable": true
+        },
+        "PhysicalDamageDealt": {
+          "type": "number",
+          "nullable": true
+        },
+        "TrueDamageDealt": {
+          "type": "number",
+          "nullable": true
+        },
+        "LargestCriticalStrike": {
+          "type": "number",
+          "nullable": true
+        },
+        "TotalDamageDealtToChampions": {
+          "type": "number",
+          "nullable": true
+        },
+        "MagicDamageDealtToChampions": {
+          "type": "number",
+          "nullable": true
+        },
+        "PhysicalDamageDealtToChampions": {
+          "type": "number",
+          "nullable": true
+        },
+        "TrueDamageDealtToChampions": {
+          "type": "number",
+          "nullable": true
+        },
+        "TotalHeal": {
+          "type": "number",
+          "nullable": true
+        },
+        "TotalUnitsHealed": {
+          "type": "number",
+          "nullable": true
+        },
+        "TotalDamageTaken": {
+          "type": "number",
+          "nullable": true
+        },
+        "MagicDamageTaken": {
+          "type": "number",
+          "nullable": true
+        },
+        "PhysicalDamageTaken": {
+          "type": "number",
+          "nullable": true
+        },
+        "TrueDamageTaken": {
+          "type": "number",
+          "nullable": true
+        },
+        "GoldEarned": {
+          "type": "number",
+          "nullable": true
+        },
+        "GoldSpent": {
+          "type": "number",
+          "nullable": true
+        },
+        "TurretKills": {
+          "type": "number",
+          "nullable": true
+        },
+        "InhibitorKills": {
+          "type": "number",
+          "nullable": true
+        },
+        "TotalMinionsKilled": {
+          "type": "number",
+          "nullable": true
+        },
+        "NeutralMinionsKIlled": {
+          "type": "number",
+          "nullable": true
+        },
+        "NeutralMinionsKIlledTeamJungle": {
+          "type": "number",
+          "nullable": true
+        },
+        "NeutralMinionsKilledEnemyJungle": {
+          "type": "number",
+          "nullable": true
+        },
+        "TotalTimeCrowdControlDealt": {
+          "type": "number",
+          "nullable": true
+        },
+        "VisionWardsBoughtInGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "SightWardsBoughtInGame": {
+          "type": "number",
+          "nullable": true
+        },
+        "WardsPlaced": {
+          "type": "number",
+          "nullable": true
+        },
+        "WardsKilled": {
+          "type": "number",
+          "nullable": true
+        },
+        "CombatPlayerScore": {
+          "type": "number",
+          "nullable": true
+        },
+        "ObjectivePlayerScore": {
+          "type": "number",
+          "nullable": true
+        },
+        "TotalPlayerScore": {
+          "type": "number",
+          "nullable": true
+        },
+        "FantasyPoints": {
+          "type": "number",
+          "nullable": true
+        },
+        "TenKillsOrAssists": {
+          "type": "number",
+          "nullable": true
+        },
+        "Updated": {
+          "type": "string",
+          "nullable": true
+        },
+        "Games": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Matches": {
+          "type": "integer",
+          "nullable": false
+        },
+        "IsClosed": {
+          "type": "boolean",
+          "nullable": false
+        }
+      }
+    },
+    "DfsSlate": {
+      "properties": {
+        "SlateID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Operator": {
+          "type": "string",
+          "nullable": true
+        },
+        "OperatorSlateID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "OperatorName": {
+          "type": "string",
+          "nullable": true
+        },
+        "OperatorDay": {
+          "type": "string",
+          "nullable": true
+        },
+        "OperatorStartTime": {
+          "type": "string",
+          "nullable": true
+        },
+        "NumberOfGames": {
+          "type": "integer",
+          "nullable": true
+        },
+        "IsMultiDaySlate": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "RemovedByOperator": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "OperatorGameType": {
+          "type": "string",
+          "nullable": true
+        },
+        "DfsSlateGames": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DfsSlateGame"
+          }
+        },
+        "DfsSlatePlayers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DfsSlatePlayer"
+          }
+        },
+        "SlateRosterSlots": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "SalaryCap": {
+          "type": "integer",
+          "nullable": true
+        },
+        "VideoGameId": {
+          "type": "integer",
+          "nullable": true
+        }
+      }
+    },
+    "DfsSlateGame": {
+      "properties": {
+        "SlateGameID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "SlateID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "GameID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Game": {
+          "$ref": "#/definitions/Game"
+        },
+        "OperatorGameID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "RemovedByOperator": {
+          "type": "boolean",
+          "nullable": true
+        }
+      }
+    },
+    "Game": {
+      "properties": {
+        "GameId": {
+          "type": "integer",
+          "nullable": false
+        },
+        "RoundId": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Season": {
+          "type": "integer",
+          "nullable": false
+        },
+        "SeasonType": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Group": {
+          "type": "string",
+          "nullable": true
+        },
+        "TeamAId": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TeamBId": {
+          "type": "integer",
+          "nullable": true
+        },
+        "VenueId": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Day": {
+          "type": "string",
+          "nullable": true
+        },
+        "DateTime": {
+          "type": "string",
+          "nullable": true
+        },
+        "Status": {
+          "type": "string",
+          "nullable": true
+        },
+        "Week": {
+          "type": "integer",
+          "nullable": true
+        },
+        "BestOf": {
+          "type": "string",
+          "nullable": true
+        },
+        "Winner": {
+          "type": "string",
+          "nullable": true
+        },
+        "VenueType": {
+          "type": "string",
+          "nullable": true
+        },
+        "TeamAKey": {
+          "type": "string",
+          "nullable": true
+        },
+        "TeamAName": {
+          "type": "string",
+          "nullable": true
+        },
+        "TeamAScore": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TeamBKey": {
+          "type": "string",
+          "nullable": true
+        },
+        "TeamBName": {
+          "type": "string",
+          "nullable": true
+        },
+        "TeamBScore": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TeamAMoneyLine": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TeamBMoneyLine": {
+          "type": "integer",
+          "nullable": true
+        },
+        "DrawMoneyLine": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PointSpread": {
+          "type": "number",
+          "nullable": true
+        },
+        "TeamAPointSpreadPayout": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TeamBPointSpreadPayout": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Updated": {
+          "type": "string",
+          "nullable": true
+        },
+        "UpdatedUtc": {
+          "type": "string",
+          "nullable": true
+        },
+        "IsClosed": {
+          "type": "boolean",
+          "nullable": true
+        }
+      }
+    },
+    "DfsSlatePlayer": {
+      "properties": {
+        "SlatePlayerID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "SlateID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "SlateGameID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PlayerID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PlayerGameProjectionStatID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "OperatorPlayerID": {
+          "type": "string",
+          "nullable": true
+        },
+        "OperatorSlatePlayerID": {
+          "type": "string",
+          "nullable": true
+        },
+        "OperatorPlayerName": {
+          "type": "string",
+          "nullable": true
+        },
+        "OperatorPosition": {
+          "type": "string",
+          "nullable": true
+        },
+        "OperatorSalary": {
+          "type": "integer",
+          "nullable": true
+        },
+        "OperatorRosterSlots": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "RemovedByOperator": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "Team": {
+          "type": "string",
+          "nullable": true
+        },
+        "TeamID": {
+          "type": "integer",
+          "nullable": true
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,558 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "NHL v3 Play-by-Play",
+    "version": "1.0",
+    "description": "NHL play-by-play API."
+  },
+  "host": "api.sportsdata.io",
+  "basePath": "/v3/nhl/pbp",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "securityDefinitions": {
+    "apiKeyHeader": {
+      "type": "apiKey",
+      "name": "Ocp-Apim-Subscription-Key",
+      "in": "header"
+    },
+    "apiKeyQuery": {
+      "type": "apiKey",
+      "name": "subscription-key",
+      "in": "query"
+    }
+  },
+  "security": [
+    {
+      "apiKeyHeader": []
+    },
+    {
+      "apiKeyQuery": []
+    }
+  ],
+  "x-servers": [
+    {
+      "url": "http://api.sportsdata.io"
+    },
+    {
+      "url": "https://api.sportsdata.io"
+    },
+    {
+      "url": "http://azure-api.sportsdata.io"
+    },
+    {
+      "url": "https://azure-api.sportsdata.io"
+    }
+  ],
+  "paths": {
+    "/{format}/PlayByPlay/{gameid}": {
+      "get": {
+        "operationId": "PlayByPlay",
+        "summary": "Play By Play",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "default": "XML",
+            "enum": [
+              "XML",
+              "JSON"
+            ]
+          },
+          {
+            "name": "gameid",
+            "in": "path",
+            "description": "The GameID of an MLB game.  GameIDs can be found in the Games API.  Valid entries are <code>14620</code> or <code>16905</code>",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/PlayByPlay"
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/PlayByPlayDelta/{date}/{minutes}": {
+      "get": {
+        "operationId": "PlayByPlayDelta",
+        "summary": "Play By Play Delta",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "default": "XML",
+            "enum": [
+              "XML",
+              "JSON"
+            ]
+          },
+          {
+            "name": "date",
+            "in": "path",
+            "description": "The date of the game(s).\n<br>Examples: <code>2018-JAN-31</code>, <code>2017-OCT-01</code>.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "minutes",
+            "in": "path",
+            "description": "Only returns plays that have changed in the last X minutes.  You specify how many minutes in time to go back.  Valid entries are:\n<code>1</code>, <code>2</code> ... <code>all</code>.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PlayByPlay"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    }
+  },
+  "tags": [],
+  "definitions": {
+    "PlayByPlay": {
+      "properties": {
+        "Game": {
+          "$ref": "#/definitions/Game"
+        },
+        "Plays": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Play"
+          }
+        }
+      }
+    },
+    "Game": {
+      "properties": {
+        "GameID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Season": {
+          "type": "integer",
+          "nullable": false
+        },
+        "SeasonType": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Status": {
+          "type": "string",
+          "nullable": true
+        },
+        "Day": {
+          "type": "string",
+          "nullable": true
+        },
+        "DateTime": {
+          "type": "string",
+          "nullable": true
+        },
+        "Updated": {
+          "type": "string",
+          "nullable": true
+        },
+        "IsClosed": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "AwayTeam": {
+          "type": "string",
+          "nullable": true
+        },
+        "HomeTeam": {
+          "type": "string",
+          "nullable": true
+        },
+        "AwayTeamID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "HomeTeamID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "StadiumID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Channel": {
+          "type": "string",
+          "nullable": true
+        },
+        "Attendance": {
+          "type": "integer",
+          "nullable": true
+        },
+        "AwayTeamScore": {
+          "type": "integer",
+          "nullable": true
+        },
+        "HomeTeamScore": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Period": {
+          "type": "string",
+          "nullable": true
+        },
+        "TimeRemainingMinutes": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TimeRemainingSeconds": {
+          "type": "integer",
+          "nullable": true
+        },
+        "AwayTeamMoneyLine": {
+          "type": "integer",
+          "nullable": true
+        },
+        "HomeTeamMoneyLine": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PointSpread": {
+          "type": "number",
+          "nullable": true
+        },
+        "OverUnder": {
+          "type": "number",
+          "nullable": true
+        },
+        "GlobalGameID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "GlobalAwayTeamID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "GlobalHomeTeamID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "PointSpreadAwayTeamMoneyLine": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PointSpreadHomeTeamMoneyLine": {
+          "type": "integer",
+          "nullable": true
+        },
+        "LastPlay": {
+          "type": "string",
+          "nullable": true
+        },
+        "Periods": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Period"
+          }
+        },
+        "GameEndDateTime": {
+          "type": "string",
+          "nullable": true
+        },
+        "HomeRotationNumber": {
+          "type": "integer",
+          "nullable": true
+        },
+        "AwayRotationNumber": {
+          "type": "integer",
+          "nullable": true
+        },
+        "NeutralVenue": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "OverPayout": {
+          "type": "integer",
+          "nullable": true
+        },
+        "UnderPayout": {
+          "type": "integer",
+          "nullable": true
+        }
+      }
+    },
+    "Period": {
+      "properties": {
+        "PeriodID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "GameID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Name": {
+          "type": "string",
+          "nullable": true
+        },
+        "AwayScore": {
+          "type": "integer",
+          "nullable": true
+        },
+        "HomeScore": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ScoringPlays": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ScoringPlay"
+          }
+        },
+        "Penalties": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Penalty"
+          }
+        }
+      }
+    },
+    "ScoringPlay": {
+      "properties": {
+        "ScoringPlayID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "PeriodID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Sequence": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TimeRemainingMinutes": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TimeRemainingSeconds": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ScoredByTeamID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "AllowedByTeamID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ScoredByPlayerID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "AssistedByPlayerID1": {
+          "type": "integer",
+          "nullable": true
+        },
+        "AssistedByPlayerID2": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PowerPlay": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "ShortHanded": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "EmptyNet": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "AwayTeamScore": {
+          "type": "integer",
+          "nullable": true
+        },
+        "HomeTeamScore": {
+          "type": "integer",
+          "nullable": true
+        }
+      }
+    },
+    "Penalty": {
+      "properties": {
+        "PenaltyID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "PeriodID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Sequence": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TimeRemainingMinutes": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TimeRemainingSeconds": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Description": {
+          "type": "string",
+          "nullable": true
+        },
+        "PenaltyMinutes": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PenalizedTeamID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PenalizedPlayerID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "DrawnByTeamID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "DrawnByPlayerID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "IsBenchPenalty": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "BenchPenaltyServedByPlayerID": {
+          "type": "integer",
+          "nullable": true
+        }
+      }
+    },
+    "Play": {
+      "properties": {
+        "PlayID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "PeriodID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "PeriodName": {
+          "type": "string",
+          "nullable": true
+        },
+        "Sequence": {
+          "type": "integer",
+          "nullable": false
+        },
+        "ClockMinutes": {
+          "type": "integer",
+          "nullable": true
+        },
+        "ClockSeconds": {
+          "type": "integer",
+          "nullable": true
+        },
+        "AwayTeamScore": {
+          "type": "integer",
+          "nullable": true
+        },
+        "HomeTeamScore": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TeamID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Team": {
+          "type": "string",
+          "nullable": true
+        },
+        "OpponentID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Opponent": {
+          "type": "string",
+          "nullable": true
+        },
+        "Category": {
+          "type": "string",
+          "nullable": true
+        },
+        "Type": {
+          "type": "string",
+          "nullable": true
+        },
+        "Description": {
+          "type": "string",
+          "nullable": true
+        },
+        "PlayerID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Updated": {
+          "type": "string",
+          "nullable": true
+        },
+        "Created": {
+          "type": "string",
+          "nullable": true
+        },
+        "FirstAssistedByPlayerID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "SecondAssistedByPlayerID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PowerPlayTeamID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PowerPlayTeam": {
+          "type": "string",
+          "nullable": true
+        },
+        "OpposingPlayerID": {
+          "type": "integer",
+          "nullable": true
+        }
+      }
+    }
+  }
+}

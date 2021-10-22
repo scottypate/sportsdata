@@ -1,0 +1,1370 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "NBA v3 Projections",
+    "version": "1.0"
+  },
+  "host": "api.sportsdata.io",
+  "basePath": "/v3/nba/projections",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "securityDefinitions": {
+    "apiKeyHeader": {
+      "type": "apiKey",
+      "name": "Ocp-Apim-Subscription-Key",
+      "in": "header"
+    },
+    "apiKeyQuery": {
+      "type": "apiKey",
+      "name": "key",
+      "in": "query"
+    }
+  },
+  "security": [
+    {
+      "apiKeyHeader": []
+    },
+    {
+      "apiKeyQuery": []
+    }
+  ],
+  "x-servers": [
+    {
+      "url": "http://api.sportsdata.io"
+    },
+    {
+      "url": "https://api.sportsdata.io"
+    },
+    {
+      "url": "http://azure-api.sportsdata.io"
+    },
+    {
+      "url": "https://azure-api.sportsdata.io"
+    }
+  ],
+  "paths": {
+    "/{format}/PlayerGameProjectionStatsByDate/{date}": {
+      "get": {
+        "operationId": "ProjectedPlayerGameStatsByDateWInjuriesDfsSalaries",
+        "summary": "Projected Player Game Stats by Date (w/ Injuries, DFS Salaries)",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "default": "XML",
+            "enum": [
+              "XML",
+              "JSON"
+            ]
+          },
+          {
+            "name": "date",
+            "in": "path",
+            "description": "The date of the game(s). <br>Examples: <code>2015-JUL-31</code>, <code>2015-SEP-01</code>.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PlayerGameProjection"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/PlayerGameProjectionStatsByPlayer/{date}/{playerid}": {
+      "get": {
+        "operationId": "ProjectedPlayerGameStatsByPlayerWInjuriesDfsSalaries",
+        "summary": "Projected Player Game Stats by Player (w/ Injuries, DFS Salaries)",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "default": "XML",
+            "enum": [
+              "XML",
+              "JSON"
+            ]
+          },
+          {
+            "name": "date",
+            "in": "path",
+            "description": "The date of the game(s).<br>Examples: <code>2015-JUL-31</code>, <code>2015-SEP-01</code>.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "playerid",
+            "in": "path",
+            "description": "Unique FantasyData Player ID. Example:<code>20000571</code>.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/PlayerGameProjection"
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/DfsSlatesByDate/{date}": {
+      "get": {
+        "operationId": "DfsSlatesByDate",
+        "summary": "DFS Slates by Date",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "default": "XML",
+            "enum": [
+              "XML",
+              "JSON"
+            ]
+          },
+          {
+            "name": "date",
+            "in": "path",
+            "description": "The date of the game(s).\n<br>Examples: <code>2017-DEC-01</code>, <code>2018-FEB-15</code>.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DfsSlate"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/PlayerSeasonProjectionStats/{season}": {
+      "get": {
+        "operationId": "ProjectedPlayerSeasonStats",
+        "summary": "Projected Player Season Stats",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "default": "XML",
+            "enum": [
+              "XML",
+              "JSON"
+            ]
+          },
+          {
+            "name": "season",
+            "in": "path",
+            "description": "Year of the season (with optional season type).<br>Examples: <code>2018</code>, <code>2019</code>, etc.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PlayerSeasonProjection"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/PlayerSeasonProjectionStatsByPlayer/{season}/{playerid}": {
+      "get": {
+        "operationId": "ProjectedPlayerSeasonStatsByPlayer",
+        "summary": "Projected Player Season Stats by Player",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "default": "XML",
+            "enum": [
+              "XML",
+              "JSON"
+            ]
+          },
+          {
+            "name": "season",
+            "in": "path",
+            "description": "Year of the season (with optional season type).<br>Examples: <code>2018</code>, <code>2019</code>, etc.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "playerid",
+            "in": "path",
+            "description": "Unique FantasyData Player ID. Example:<code>20000571</code>.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/PlayerSeasonProjection"
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/PlayerSeasonProjectionStatsByTeam/{season}/{team}": {
+      "get": {
+        "operationId": "ProjectedPlayerSeasonStatsByTeam",
+        "summary": "Projected Player Season Stats by Team",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "default": "XML",
+            "enum": [
+              "XML",
+              "JSON"
+            ]
+          },
+          {
+            "name": "season",
+            "in": "path",
+            "description": "Year of the season (with optional season type).<br>Examples: <code>2018</code>, <code>2019</code>, etc.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "team",
+            "in": "path",
+            "description": "The abbreviation of the requested team.\n<br>Examples: <code>MIA</code>, <code>PHI</code>.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PlayerSeasonProjection"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/StartingLineupsByDate/{date}": {
+      "get": {
+        "description": "This endpoint provides the projected & confirmed starting lineups for NBA games on a given date.",
+        "operationId": "StartingLineupsByDate",
+        "summary": "Starting Lineups by Date",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "default": "XML",
+            "enum": [
+              "XML",
+              "JSON"
+            ]
+          },
+          {
+            "name": "date",
+            "in": "path",
+            "description": "The date of the game(s). <br> Examples: <code>2021-OCT-12</code>, <code>2021-DEC-09</code>.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/StartingLineups"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    }
+  },
+  "tags": [],
+  "definitions": {
+    "PlayerGameProjection": {
+      "properties": {
+        "StatID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "TeamID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PlayerID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "SeasonType": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Season": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Name": {
+          "type": "string",
+          "nullable": true
+        },
+        "Team": {
+          "type": "string",
+          "nullable": true
+        },
+        "Position": {
+          "type": "string",
+          "nullable": true
+        },
+        "Started": {
+          "type": "integer",
+          "nullable": true
+        },
+        "FanDuelSalary": {
+          "type": "integer",
+          "nullable": true
+        },
+        "DraftKingsSalary": {
+          "type": "integer",
+          "nullable": true
+        },
+        "FantasyDataSalary": {
+          "type": "integer",
+          "nullable": true
+        },
+        "YahooSalary": {
+          "type": "integer",
+          "nullable": true
+        },
+        "InjuryStatus": {
+          "type": "string",
+          "nullable": true
+        },
+        "InjuryBodyPart": {
+          "type": "string",
+          "nullable": true
+        },
+        "InjuryStartDate": {
+          "type": "string",
+          "nullable": true
+        },
+        "InjuryNotes": {
+          "type": "string",
+          "nullable": true
+        },
+        "FanDuelPosition": {
+          "type": "string",
+          "nullable": true
+        },
+        "DraftKingsPosition": {
+          "type": "string",
+          "nullable": true
+        },
+        "YahooPosition": {
+          "type": "string",
+          "nullable": true
+        },
+        "OpponentRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "OpponentPositionRank": {
+          "type": "integer",
+          "nullable": true
+        },
+        "GlobalTeamID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "FantasyDraftSalary": {
+          "type": "integer",
+          "nullable": true
+        },
+        "FantasyDraftPosition": {
+          "type": "string",
+          "nullable": true
+        },
+        "GameID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "OpponentID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Opponent": {
+          "type": "string",
+          "nullable": true
+        },
+        "Day": {
+          "type": "string",
+          "nullable": true
+        },
+        "DateTime": {
+          "type": "string",
+          "nullable": true
+        },
+        "HomeOrAway": {
+          "type": "string",
+          "nullable": true
+        },
+        "IsGameOver": {
+          "type": "boolean",
+          "nullable": false
+        },
+        "GlobalGameID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "GlobalOpponentID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Updated": {
+          "type": "string",
+          "nullable": true
+        },
+        "Games": {
+          "type": "integer",
+          "nullable": true
+        },
+        "FantasyPoints": {
+          "type": "number",
+          "nullable": true
+        },
+        "Minutes": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Seconds": {
+          "type": "integer",
+          "nullable": true
+        },
+        "FieldGoalsMade": {
+          "type": "number",
+          "nullable": true
+        },
+        "FieldGoalsAttempted": {
+          "type": "number",
+          "nullable": true
+        },
+        "FieldGoalsPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "EffectiveFieldGoalsPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "TwoPointersMade": {
+          "type": "number",
+          "nullable": true
+        },
+        "TwoPointersAttempted": {
+          "type": "number",
+          "nullable": true
+        },
+        "TwoPointersPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "ThreePointersMade": {
+          "type": "number",
+          "nullable": true
+        },
+        "ThreePointersAttempted": {
+          "type": "number",
+          "nullable": true
+        },
+        "ThreePointersPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "FreeThrowsMade": {
+          "type": "number",
+          "nullable": true
+        },
+        "FreeThrowsAttempted": {
+          "type": "number",
+          "nullable": true
+        },
+        "FreeThrowsPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "OffensiveRebounds": {
+          "type": "number",
+          "nullable": true
+        },
+        "DefensiveRebounds": {
+          "type": "number",
+          "nullable": true
+        },
+        "Rebounds": {
+          "type": "number",
+          "nullable": true
+        },
+        "OffensiveReboundsPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "DefensiveReboundsPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "TotalReboundsPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "Assists": {
+          "type": "number",
+          "nullable": true
+        },
+        "Steals": {
+          "type": "number",
+          "nullable": true
+        },
+        "BlockedShots": {
+          "type": "number",
+          "nullable": true
+        },
+        "Turnovers": {
+          "type": "number",
+          "nullable": true
+        },
+        "PersonalFouls": {
+          "type": "number",
+          "nullable": true
+        },
+        "Points": {
+          "type": "number",
+          "nullable": true
+        },
+        "TrueShootingAttempts": {
+          "type": "number",
+          "nullable": true
+        },
+        "TrueShootingPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "PlayerEfficiencyRating": {
+          "type": "number",
+          "nullable": true
+        },
+        "AssistsPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "StealsPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "BlocksPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "TurnOversPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "UsageRatePercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "FantasyPointsFanDuel": {
+          "type": "number",
+          "nullable": true
+        },
+        "FantasyPointsDraftKings": {
+          "type": "number",
+          "nullable": true
+        },
+        "FantasyPointsYahoo": {
+          "type": "number",
+          "nullable": true
+        },
+        "PlusMinus": {
+          "type": "number",
+          "nullable": true
+        },
+        "DoubleDoubles": {
+          "type": "number",
+          "nullable": true
+        },
+        "TripleDoubles": {
+          "type": "number",
+          "nullable": true
+        },
+        "FantasyPointsFantasyDraft": {
+          "type": "number",
+          "nullable": true
+        },
+        "IsClosed": {
+          "type": "boolean",
+          "nullable": false
+        },
+        "LineupConfirmed": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "LineupStatus": {
+          "type": "string",
+          "nullable": true
+        }
+      }
+    },
+    "DfsSlate": {
+      "properties": {
+        "SlateID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Operator": {
+          "type": "string",
+          "nullable": true
+        },
+        "OperatorSlateID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "OperatorName": {
+          "type": "string",
+          "nullable": true
+        },
+        "OperatorDay": {
+          "type": "string",
+          "nullable": true
+        },
+        "OperatorStartTime": {
+          "type": "string",
+          "nullable": true
+        },
+        "NumberOfGames": {
+          "type": "integer",
+          "nullable": true
+        },
+        "IsMultiDaySlate": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "RemovedByOperator": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "OperatorGameType": {
+          "type": "string",
+          "nullable": true
+        },
+        "DfsSlateGames": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DfsSlateGame"
+          }
+        },
+        "DfsSlatePlayers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DfsSlatePlayer"
+          }
+        },
+        "SlateRosterSlots": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "SalaryCap": {
+          "type": "integer",
+          "nullable": true
+        }
+      }
+    },
+    "DfsSlateGame": {
+      "properties": {
+        "SlateGameID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "SlateID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "GameID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Game": {
+          "$ref": "#/definitions/Game"
+        },
+        "OperatorGameID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "RemovedByOperator": {
+          "type": "boolean",
+          "nullable": true
+        }
+      }
+    },
+    "Game": {
+      "properties": {
+        "GameID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Season": {
+          "type": "integer",
+          "nullable": false
+        },
+        "SeasonType": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Status": {
+          "type": "string",
+          "nullable": true
+        },
+        "Day": {
+          "type": "string",
+          "nullable": true
+        },
+        "DateTime": {
+          "type": "string",
+          "nullable": true
+        },
+        "AwayTeam": {
+          "type": "string",
+          "nullable": true
+        },
+        "HomeTeam": {
+          "type": "string",
+          "nullable": true
+        },
+        "AwayTeamID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "HomeTeamID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "StadiumID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Channel": {
+          "type": "string",
+          "nullable": true
+        },
+        "Attendance": {
+          "type": "integer",
+          "nullable": true
+        },
+        "AwayTeamScore": {
+          "type": "integer",
+          "nullable": true
+        },
+        "HomeTeamScore": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Updated": {
+          "type": "string",
+          "nullable": true
+        },
+        "Quarter": {
+          "type": "string",
+          "nullable": true
+        },
+        "TimeRemainingMinutes": {
+          "type": "integer",
+          "nullable": true
+        },
+        "TimeRemainingSeconds": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PointSpread": {
+          "type": "number",
+          "nullable": true
+        },
+        "OverUnder": {
+          "type": "number",
+          "nullable": true
+        },
+        "AwayTeamMoneyLine": {
+          "type": "integer",
+          "nullable": true
+        },
+        "HomeTeamMoneyLine": {
+          "type": "integer",
+          "nullable": true
+        },
+        "GlobalGameID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "GlobalAwayTeamID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "GlobalHomeTeamID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "PointSpreadAwayTeamMoneyLine": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PointSpreadHomeTeamMoneyLine": {
+          "type": "integer",
+          "nullable": true
+        },
+        "LastPlay": {
+          "type": "string",
+          "nullable": true
+        },
+        "IsClosed": {
+          "type": "boolean",
+          "nullable": false
+        },
+        "Quarters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Quarter"
+          }
+        },
+        "GameEndDateTime": {
+          "type": "string",
+          "nullable": true
+        },
+        "HomeRotationNumber": {
+          "type": "integer",
+          "nullable": true
+        },
+        "AwayRotationNumber": {
+          "type": "integer",
+          "nullable": true
+        },
+        "NeutralVenue": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "OverPayout": {
+          "type": "integer",
+          "nullable": true
+        },
+        "UnderPayout": {
+          "type": "integer",
+          "nullable": true
+        },
+        "CrewChiefID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "UmpireID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "RefereeID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "AlternateID": {
+          "type": "integer",
+          "nullable": true
+        }
+      }
+    },
+    "Quarter": {
+      "properties": {
+        "QuarterID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "GameID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Number": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Name": {
+          "type": "string",
+          "nullable": true
+        },
+        "AwayScore": {
+          "type": "integer",
+          "nullable": true
+        },
+        "HomeScore": {
+          "type": "integer",
+          "nullable": true
+        }
+      }
+    },
+    "DfsSlatePlayer": {
+      "properties": {
+        "SlatePlayerID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "SlateID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "SlateGameID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PlayerID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PlayerGameProjectionStatID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "OperatorPlayerID": {
+          "type": "string",
+          "nullable": true
+        },
+        "OperatorSlatePlayerID": {
+          "type": "string",
+          "nullable": true
+        },
+        "OperatorPlayerName": {
+          "type": "string",
+          "nullable": true
+        },
+        "OperatorPosition": {
+          "type": "string",
+          "nullable": true
+        },
+        "OperatorSalary": {
+          "type": "integer",
+          "nullable": true
+        },
+        "OperatorRosterSlots": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "RemovedByOperator": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "Team": {
+          "type": "string",
+          "nullable": true
+        },
+        "TeamID": {
+          "type": "integer",
+          "nullable": true
+        }
+      }
+    },
+    "PlayerSeasonProjection": {
+      "properties": {
+        "StatID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "TeamID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PlayerID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "SeasonType": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Season": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Name": {
+          "type": "string",
+          "nullable": true
+        },
+        "Team": {
+          "type": "string",
+          "nullable": true
+        },
+        "Position": {
+          "type": "string",
+          "nullable": true
+        },
+        "Started": {
+          "type": "integer",
+          "nullable": true
+        },
+        "GlobalTeamID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Updated": {
+          "type": "string",
+          "nullable": true
+        },
+        "Games": {
+          "type": "integer",
+          "nullable": true
+        },
+        "FantasyPoints": {
+          "type": "number",
+          "nullable": true
+        },
+        "Minutes": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Seconds": {
+          "type": "integer",
+          "nullable": true
+        },
+        "FieldGoalsMade": {
+          "type": "number",
+          "nullable": true
+        },
+        "FieldGoalsAttempted": {
+          "type": "number",
+          "nullable": true
+        },
+        "FieldGoalsPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "EffectiveFieldGoalsPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "TwoPointersMade": {
+          "type": "number",
+          "nullable": true
+        },
+        "TwoPointersAttempted": {
+          "type": "number",
+          "nullable": true
+        },
+        "TwoPointersPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "ThreePointersMade": {
+          "type": "number",
+          "nullable": true
+        },
+        "ThreePointersAttempted": {
+          "type": "number",
+          "nullable": true
+        },
+        "ThreePointersPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "FreeThrowsMade": {
+          "type": "number",
+          "nullable": true
+        },
+        "FreeThrowsAttempted": {
+          "type": "number",
+          "nullable": true
+        },
+        "FreeThrowsPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "OffensiveRebounds": {
+          "type": "number",
+          "nullable": true
+        },
+        "DefensiveRebounds": {
+          "type": "number",
+          "nullable": true
+        },
+        "Rebounds": {
+          "type": "number",
+          "nullable": true
+        },
+        "OffensiveReboundsPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "DefensiveReboundsPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "TotalReboundsPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "Assists": {
+          "type": "number",
+          "nullable": true
+        },
+        "Steals": {
+          "type": "number",
+          "nullable": true
+        },
+        "BlockedShots": {
+          "type": "number",
+          "nullable": true
+        },
+        "Turnovers": {
+          "type": "number",
+          "nullable": true
+        },
+        "PersonalFouls": {
+          "type": "number",
+          "nullable": true
+        },
+        "Points": {
+          "type": "number",
+          "nullable": true
+        },
+        "TrueShootingAttempts": {
+          "type": "number",
+          "nullable": true
+        },
+        "TrueShootingPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "PlayerEfficiencyRating": {
+          "type": "number",
+          "nullable": true
+        },
+        "AssistsPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "StealsPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "BlocksPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "TurnOversPercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "UsageRatePercentage": {
+          "type": "number",
+          "nullable": true
+        },
+        "FantasyPointsFanDuel": {
+          "type": "number",
+          "nullable": true
+        },
+        "FantasyPointsDraftKings": {
+          "type": "number",
+          "nullable": true
+        },
+        "FantasyPointsYahoo": {
+          "type": "number",
+          "nullable": true
+        },
+        "PlusMinus": {
+          "type": "number",
+          "nullable": true
+        },
+        "DoubleDoubles": {
+          "type": "number",
+          "nullable": true
+        },
+        "TripleDoubles": {
+          "type": "number",
+          "nullable": true
+        },
+        "FantasyPointsFantasyDraft": {
+          "type": "number",
+          "nullable": true
+        },
+        "IsClosed": {
+          "type": "boolean",
+          "nullable": false
+        },
+        "LineupConfirmed": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "LineupStatus": {
+          "type": "string",
+          "nullable": true
+        }
+      }
+    },
+    "StartingLineups": {
+      "properties": {
+        "GameID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Season": {
+          "type": "integer",
+          "nullable": false
+        },
+        "SeasonType": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Day": {
+          "type": "string",
+          "nullable": true
+        },
+        "DateTime": {
+          "type": "string",
+          "nullable": true
+        },
+        "Status": {
+          "type": "string",
+          "nullable": true
+        },
+        "HomeTeamID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "HomeTeam": {
+          "type": "string",
+          "nullable": true
+        },
+        "AwayTeamID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "AwayTeam": {
+          "type": "string",
+          "nullable": true
+        },
+        "HomeLineup": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Lineup"
+          }
+        },
+        "AwayLineup": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Lineup"
+          }
+        }
+      }
+    },
+    "Lineup": {
+      "properties": {
+        "PlayerID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "TeamID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Team": {
+          "type": "string",
+          "nullable": true
+        },
+        "FirstName": {
+          "type": "string",
+          "nullable": true
+        },
+        "LastName": {
+          "type": "string",
+          "nullable": true
+        },
+        "Position": {
+          "type": "string",
+          "nullable": true
+        },
+        "Starting": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "Confirmed": {
+          "type": "boolean",
+          "nullable": true
+        }
+      }
+    }
+  }
+}

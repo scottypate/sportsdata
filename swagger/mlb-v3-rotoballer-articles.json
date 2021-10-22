@@ -1,0 +1,243 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "MLB v3 RotoBaller Articles",
+    "version": "1.0"
+  },
+  "host": "api.sportsdata.io",
+  "basePath": "/v3/mlb/articles-rotoballer",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "securityDefinitions": {
+    "apiKeyHeader": {
+      "type": "apiKey",
+      "name": "Ocp-Apim-Subscription-Key",
+      "in": "header"
+    },
+    "apiKeyQuery": {
+      "type": "apiKey",
+      "name": "subscription-key",
+      "in": "query"
+    }
+  },
+  "security": [
+    {
+      "apiKeyHeader": []
+    },
+    {
+      "apiKeyQuery": []
+    }
+  ],
+  "x-servers": [
+    {
+      "url": "http://api.sportsdata.io"
+    },
+    {
+      "url": "https://api.sportsdata.io"
+    },
+    {
+      "url": "http://azure-api.sportsdata.io"
+    },
+    {
+      "url": "https://azure-api.sportsdata.io"
+    }
+  ],
+  "paths": {
+    "/{format}/RotoBallerArticles": {
+      "get": {
+        "operationId": "RotoballerArticles",
+        "summary": "RotoBaller Articles",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "default": "xml",
+            "enum": [
+              "xml",
+              "json"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Article"
+              }
+            },
+            "examples": {
+              "application/json": "[\r\n  {\r\n    \"ArticleID\": 0,\r\n    \"Title\": \"string\",\r\n    \"Source\": \"string\",\r\n    \"Updated\": \"string\",\r\n    \"Content\": \"string\",\r\n    \"Url\": \"string\",\r\n    \"TermsOfUse\": \"string\",\r\n    \"Author\": \"string\",\r\n    \"Players\": [\r\n      {\r\n        \"PlayerID\": 0,\r\n        \"Name\": \"string\",\r\n        \"TeamID\": 0,\r\n        \"Team\": \"string\",\r\n        \"Position\": \"string\"\r\n      }\r\n    ]\r\n  }\r\n]"
+            }
+          }
+        }
+      }
+    },
+    "/{format}/RotoBallerArticlesByDate/{date}": {
+      "get": {
+        "operationId": "RotoballerArticlesByDate",
+        "summary": "RotoBaller Articles By Date",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "default": "xml",
+            "enum": [
+              "xml",
+              "json"
+            ]
+          },
+          {
+            "name": "date",
+            "in": "path",
+            "description": "The date of the news.\n<br>Examples: <code>2017-JUL-31</code>, <code>2017-SEP-01</code>.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Article"
+              }
+            },
+            "examples": {
+              "application/json": "[\r\n  {\r\n    \"ArticleID\": 0,\r\n    \"Title\": \"string\",\r\n    \"Source\": \"string\",\r\n    \"Updated\": \"string\",\r\n    \"Content\": \"string\",\r\n    \"Url\": \"string\",\r\n    \"TermsOfUse\": \"string\",\r\n    \"Author\": \"string\",\r\n    \"Players\": [\r\n      {\r\n        \"PlayerID\": 0,\r\n        \"Name\": \"string\",\r\n        \"TeamID\": 0,\r\n        \"Team\": \"string\",\r\n        \"Position\": \"string\"\r\n      }\r\n    ]\r\n  }\r\n]"
+            }
+          }
+        }
+      }
+    },
+    "/{format}/RotoBallerArticlesByPlayerID/{playerid}": {
+      "get": {
+        "operationId": "RotoballerArticlesByPlayer",
+        "summary": "RotoBaller Articles By Player",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "default": "xml",
+            "enum": [
+              "xml",
+              "json"
+            ]
+          },
+          {
+            "name": "playerid",
+            "in": "path",
+            "description": "Unique FantasyData Player ID.\nExample:<code>10000507</code>.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Article"
+              }
+            },
+            "examples": {
+              "application/json": "[\r\n  {\r\n    \"ArticleID\": 0,\r\n    \"Title\": \"string\",\r\n    \"Source\": \"string\",\r\n    \"Updated\": \"string\",\r\n    \"Content\": \"string\",\r\n    \"Url\": \"string\",\r\n    \"TermsOfUse\": \"string\",\r\n    \"Author\": \"string\",\r\n    \"Players\": [\r\n      {\r\n        \"PlayerID\": 0,\r\n        \"Name\": \"string\",\r\n        \"TeamID\": 0,\r\n        \"Team\": \"string\",\r\n        \"Position\": \"string\"\r\n      }\r\n    ]\r\n  }\r\n]"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Article": {
+      "properties": {
+        "ArticleID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Title": {
+          "type": "string",
+          "nullable": true
+        },
+        "Source": {
+          "type": "string",
+          "nullable": true
+        },
+        "Updated": {
+          "type": "string",
+          "nullable": true
+        },
+        "Content": {
+          "type": "string",
+          "nullable": true
+        },
+        "Url": {
+          "type": "string",
+          "nullable": true
+        },
+        "TermsOfUse": {
+          "type": "string",
+          "nullable": true
+        },
+        "Author": {
+          "type": "string",
+          "nullable": true
+        },
+        "Players": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PlayerInfo"
+          }
+        }
+      }
+    },
+    "PlayerInfo": {
+      "properties": {
+        "PlayerID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Name": {
+          "type": "string",
+          "nullable": true
+        },
+        "TeamID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Team": {
+          "type": "string",
+          "nullable": true
+        },
+        "Position": {
+          "type": "string",
+          "nullable": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

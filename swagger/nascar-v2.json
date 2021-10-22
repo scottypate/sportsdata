@@ -1,0 +1,691 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "NASCAR v2",
+    "version": "1.0"
+  },
+  "host": "api.sportsdata.io",
+  "basePath": "/nascar/v2",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "securityDefinitions": {
+    "apiKeyHeader": {
+      "type": "apiKey",
+      "name": "Ocp-Apim-Subscription-Key",
+      "in": "header"
+    },
+    "apiKeyQuery": {
+      "type": "apiKey",
+      "name": "subscription-key",
+      "in": "query"
+    }
+  },
+  "security": [
+    {
+      "apiKeyHeader": []
+    },
+    {
+      "apiKeyQuery": []
+    }
+  ],
+  "x-servers": [
+    {
+      "url": "http://api.sportsdata.io"
+    },
+    {
+      "url": "https://api.sportsdata.io"
+    },
+    {
+      "url": "http://azure-api.sportsdata.io"
+    },
+    {
+      "url": "https://azure-api.sportsdata.io"
+    }
+  ],
+  "paths": {
+    "/{format}/series": {
+      "get": {
+        "operationId": "Series",
+        "summary": "Series",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "default": "xml",
+            "enum": [
+              "xml",
+              "json"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Series"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/races/{season}": {
+      "get": {
+        "operationId": "RacesSchedule",
+        "summary": "Races / Schedule",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "default": "xml",
+            "enum": [
+              "xml",
+              "json"
+            ]
+          },
+          {
+            "name": "season",
+            "in": "path",
+            "description": "Year of the season.\n<br>Examples: <code>2015</code>, <code>2016</code>.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Race"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/drivers": {
+      "get": {
+        "operationId": "Drivers",
+        "summary": "Drivers",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "default": "xml",
+            "enum": [
+              "xml",
+              "json"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Driver"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/driver/{driverid}": {
+      "get": {
+        "operationId": "DriverDetails",
+        "summary": "Driver Details",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "default": "xml",
+            "enum": [
+              "xml",
+              "json"
+            ]
+          },
+          {
+            "name": "driverid",
+            "in": "path",
+            "description": "Unique FantasyData Driver ID.\nExample:<code>80000268</code>.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Driver"
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/raceresult/{raceid}": {
+      "get": {
+        "operationId": "RaceResults",
+        "summary": "Race Results",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "default": "xml",
+            "enum": [
+              "xml",
+              "json"
+            ]
+          },
+          {
+            "name": "raceid",
+            "in": "path",
+            "description": "Unique FantasyData Race ID.\nExample:<code>1</code>, <code>2</code>, etc.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/RaceResult"
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/{format}/DriverRaceProjections/{raceid}": {
+      "get": {
+        "operationId": "DriverRaceProjectionsEntryList",
+        "summary": "Driver Race Projections (Entry List)",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Desired response format. Valid entries are <code>XML</code> or <code>JSON</code>.",
+            "required": true,
+            "type": "string",
+            "default": "xml",
+            "enum": [
+              "xml",
+              "json"
+            ]
+          },
+          {
+            "name": "raceid",
+            "in": "path",
+            "description": "Unique FantasyData Race ID.\nExample:<code>1</code>, <code>2</code>, etc.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DriverRaceProjection"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    }
+  },
+  "tags": [],
+  "definitions": {
+    "Series": {
+      "properties": {
+        "SeriesID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Name": {
+          "type": "string",
+          "nullable": true
+        }
+      }
+    },
+    "Race": {
+      "properties": {
+        "RaceID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "SeriesID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "SeriesName": {
+          "type": "string",
+          "nullable": true
+        },
+        "Season": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Name": {
+          "type": "string",
+          "nullable": true
+        },
+        "Day": {
+          "type": "string",
+          "nullable": true
+        },
+        "DateTime": {
+          "type": "string",
+          "nullable": true
+        },
+        "Track": {
+          "type": "string",
+          "nullable": true
+        },
+        "Broadcast": {
+          "type": "string",
+          "nullable": true
+        },
+        "WinnerID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "PoleWinnerID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "IsInProgress": {
+          "type": "boolean",
+          "nullable": false
+        },
+        "IsOver": {
+          "type": "boolean",
+          "nullable": false
+        },
+        "Updated": {
+          "type": "string",
+          "nullable": true
+        },
+        "Created": {
+          "type": "string",
+          "nullable": true
+        },
+        "RescheduledDay": {
+          "type": "string",
+          "nullable": true
+        },
+        "RescheduledDateTime": {
+          "type": "string",
+          "nullable": true
+        },
+        "Canceled": {
+          "type": "boolean",
+          "nullable": false
+        }
+      }
+    },
+    "Driver": {
+      "properties": {
+        "DriverID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "FirstName": {
+          "type": "string",
+          "nullable": true
+        },
+        "LastName": {
+          "type": "string",
+          "nullable": true
+        },
+        "Number": {
+          "type": "integer",
+          "nullable": true
+        },
+        "NumberDisplay": {
+          "type": "string",
+          "nullable": true
+        },
+        "Team": {
+          "type": "string",
+          "nullable": true
+        },
+        "BirthDate": {
+          "type": "string",
+          "nullable": true
+        },
+        "BirthPlace": {
+          "type": "string",
+          "nullable": true
+        },
+        "Gender": {
+          "type": "string",
+          "nullable": true
+        },
+        "Height": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Weight": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Manufacturer": {
+          "type": "string",
+          "nullable": true
+        },
+        "Engine": {
+          "type": "string",
+          "nullable": true
+        },
+        "Chassis": {
+          "type": "string",
+          "nullable": true
+        },
+        "Sponsors": {
+          "type": "string",
+          "nullable": true
+        },
+        "CrewChief": {
+          "type": "string",
+          "nullable": true
+        },
+        "PhotoUrl": {
+          "type": "string",
+          "nullable": true
+        },
+        "Updated": {
+          "type": "string",
+          "nullable": true
+        },
+        "Created": {
+          "type": "string",
+          "nullable": true
+        }
+      }
+    },
+    "RaceResult": {
+      "properties": {
+        "Race": {
+          "$ref": "#/definitions/Race"
+        },
+        "DriverRaces": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DriverRace"
+          }
+        }
+      }
+    },
+    "DriverRace": {
+      "properties": {
+        "StatID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "DriverID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Season": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Name": {
+          "type": "string",
+          "nullable": true
+        },
+        "Number": {
+          "type": "integer",
+          "nullable": true
+        },
+        "NumberDisplay": {
+          "type": "string",
+          "nullable": true
+        },
+        "Manufacturer": {
+          "type": "string",
+          "nullable": true
+        },
+        "DraftKingsSalary": {
+          "type": "integer",
+          "nullable": true
+        },
+        "RaceID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Day": {
+          "type": "string",
+          "nullable": true
+        },
+        "DateTime": {
+          "type": "string",
+          "nullable": true
+        },
+        "Updated": {
+          "type": "string",
+          "nullable": true
+        },
+        "Created": {
+          "type": "string",
+          "nullable": true
+        },
+        "FantasyPoints": {
+          "type": "number",
+          "nullable": true
+        },
+        "FantasyPointsDraftKings": {
+          "type": "number",
+          "nullable": true
+        },
+        "QualifyingSpeed": {
+          "type": "number",
+          "nullable": true
+        },
+        "PoleFinalPosition": {
+          "type": "number",
+          "nullable": true
+        },
+        "StartPosition": {
+          "type": "number",
+          "nullable": true
+        },
+        "FinalPosition": {
+          "type": "number",
+          "nullable": true
+        },
+        "PositionDifferential": {
+          "type": "number",
+          "nullable": true
+        },
+        "Laps": {
+          "type": "number",
+          "nullable": true
+        },
+        "LapsLed": {
+          "type": "number",
+          "nullable": true
+        },
+        "FastestLaps": {
+          "type": "number",
+          "nullable": true
+        },
+        "Points": {
+          "type": "number",
+          "nullable": true
+        },
+        "Bonus": {
+          "type": "number",
+          "nullable": true
+        },
+        "Penalty": {
+          "type": "number",
+          "nullable": true
+        },
+        "Wins": {
+          "type": "number",
+          "nullable": true
+        },
+        "Poles": {
+          "type": "number",
+          "nullable": true
+        }
+      }
+    },
+    "DriverRaceProjection": {
+      "properties": {
+        "StatID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "DriverID": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Season": {
+          "type": "integer",
+          "nullable": false
+        },
+        "Name": {
+          "type": "string",
+          "nullable": true
+        },
+        "Number": {
+          "type": "integer",
+          "nullable": true
+        },
+        "NumberDisplay": {
+          "type": "string",
+          "nullable": true
+        },
+        "Manufacturer": {
+          "type": "string",
+          "nullable": true
+        },
+        "DraftKingsSalary": {
+          "type": "integer",
+          "nullable": true
+        },
+        "RaceID": {
+          "type": "integer",
+          "nullable": true
+        },
+        "Day": {
+          "type": "string",
+          "nullable": true
+        },
+        "DateTime": {
+          "type": "string",
+          "nullable": true
+        },
+        "Updated": {
+          "type": "string",
+          "nullable": true
+        },
+        "Created": {
+          "type": "string",
+          "nullable": true
+        },
+        "FantasyPoints": {
+          "type": "number",
+          "nullable": true
+        },
+        "FantasyPointsDraftKings": {
+          "type": "number",
+          "nullable": true
+        },
+        "QualifyingSpeed": {
+          "type": "number",
+          "nullable": true
+        },
+        "PoleFinalPosition": {
+          "type": "number",
+          "nullable": true
+        },
+        "StartPosition": {
+          "type": "number",
+          "nullable": true
+        },
+        "FinalPosition": {
+          "type": "number",
+          "nullable": true
+        },
+        "PositionDifferential": {
+          "type": "number",
+          "nullable": true
+        },
+        "Laps": {
+          "type": "number",
+          "nullable": true
+        },
+        "LapsLed": {
+          "type": "number",
+          "nullable": true
+        },
+        "FastestLaps": {
+          "type": "number",
+          "nullable": true
+        },
+        "Points": {
+          "type": "number",
+          "nullable": true
+        },
+        "Bonus": {
+          "type": "number",
+          "nullable": true
+        },
+        "Penalty": {
+          "type": "number",
+          "nullable": true
+        },
+        "Wins": {
+          "type": "number",
+          "nullable": true
+        },
+        "Poles": {
+          "type": "number",
+          "nullable": true
+        }
+      }
+    }
+  }
+}
